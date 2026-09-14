@@ -22,7 +22,7 @@ Android Javaアプリ開発とプログラミングの初心者を対象とす�
 
 | 項目 | 方針 |
 | --- | --- |
-| Android Studio | Quail 4 \| 2026.1.4。学生全員が同じバージョンを利用する（指定環境）。 |
+| Android Studio | Panda 2 \| 2025.3.2。学生全員が同じバージョンを利用する（指定環境）。 |
 | 言語 | アプリの処理はJavaで記述する。 |
 | 画面実装 | View SystemのXMLレイアウトを使用する。 |
 | レイアウト | LinearLayoutを基本とし、必要に応じてScrollViewを使用する。ConstraintLayoutは使用しない。 |
