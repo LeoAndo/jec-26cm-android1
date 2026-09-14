@@ -1,0 +1,42 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"><link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;700&amp;display=swap" rel="stylesheet"><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"><style>@layer base{html,body{width:100%;margin:0;padding:0;background-color:#fcf9f8;}body{overscroll-behavior:none;font-family:'Noto Sans',sans-serif;}.pb-safe{padding-bottom:env(safe-area-inset-bottom,0px);}.pt-safe{padding-top:env(safe-area-inset-top,0px);}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"on-tertiary":"#ffffff","tertiary":"#93482f","tertiary-fixed-dim":"#ffb59d","primary-fixed":"#90f4e3","primary-fixed-dim":"#73d8c7","surface":"#fcf9f8","surface-container-low":"#f6f3f2","tertiary-container":"#b16045","secondary":"#20695d","on-secondary-fixed":"#00201b","secondary-fixed":"#aaf0e0","outline":"#6d7a76","on-surface-variant":"#3e4946","on-surface":"#1b1c1c","on-background":"#1b1c1c","inverse-surface":"#303030","secondary-container":"#a7eddd","on-secondary":"#ffffff","background":"#fcf9f8","error":"#ba1a1a","error-container":"#ffdad6","surface-tint":"#006b5f","tertiary-fixed":"#ffdbd0","secondary-fixed-dim":"#8ed4c4","on-primary-fixed-variant":"#005047","on-primary-container":"#ffffff","surface-dim":"#dcd9d9","surface-container-lowest":"#ffffff","primary-container":"#008577","on-primary":"#ffffff","surface-bright":"#fcf9f8","on-error":"#ffffff","inverse-on-surface":"#f3f0ef","on-error-container":"#93000a","on-tertiary-fixed":"#390b00","primary":"#006a5e","surface-container-high":"#eae7e7","outline-variant":"#bdc9c5","on-secondary-container":"#266e61","on-primary-fixed":"#00201c","surface-container":"#f0eded","inverse-primary":"#73d8c7","surface-container-highest":"#e5e2e1","on-tertiary-fixed-variant":"#76321b","on-secondary-fixed-variant":"#005045","surface-variant":"#e5e2e1","on-tertiary-container":"#ffffff"},borderRadius:{"DEFAULT":"0.125rem","lg":"0.25rem","xl":"0.5rem","full":"0.75rem"},spacing:{"space-md":"16px","space-xs":"4px","space-sm":"8px","margin":"24px","space-lg":"24px","space-xl":"32px","gutter":"16px"},fontFamily:{"body-lg":["Noto Sans"],"label-lg":["Noto Sans"],"headline-lg":["Noto Sans"],"label-md":["Noto Sans"],"headline-sm":["Noto Sans"],"headline-md":["Noto Sans"],"body-md":["Noto Sans"]},fontSize:{"body-lg":["16px",{"lineHeight":"24px","fontWeight":"400"}],"label-lg":["14px",{"lineHeight":"20px","letterSpacing":"0.1px","fontWeight":"500"}],"headline-lg":["32px",{"lineHeight":"40px","fontWeight":"400"}],"label-md":["12px",{"lineHeight":"16px","letterSpacing":"0.5px","fontWeight":"500"}],"headline-sm":["20px",{"lineHeight":"28px","fontWeight":"500"}],"headline-md":["24px",{"lineHeight":"32px","fontWeight":"400"}],"body-md":["14px",{"lineHeight":"20px","fontWeight":"400"}]}}}};</script></head><body class="bg-surface text-on-surface min-h-screen flex flex-col items-center justify-between antialiased selection:bg-primary-fixed" style="min-height: max(884px, 100dvh); background-color: rgb(254, 247, 255); color: rgb(29, 27, 32);"><div class="fixed top-0 inset-x-0 z-50 pt-safe bg-surface/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.02)]" style="background-color: rgba(254, 247, 255, 0.9); color: rgb(29, 27, 32);"><div class="h-6 px-margin flex items-center justify-between text-on-surface select-none"><span class="font-label-md text-label-md font-medium tracking-tight">10:00</span><div class="flex items-center gap-space-xs"><span class="material-symbols-outlined text-[16px]">wifi</span><span class="material-symbols-outlined text-[16px]">signal_cellular_4_bar</span><span class="material-symbols-outlined text-[16px]">battery_full</span></div></div></div><main class="flex-1 flex flex-col w-full max-w-[480px] px-margin pt-6 pb-6 bg-surface" style="background-color: rgb(254, 247, 255);"><div class="flex flex-col w-full my-auto py-margin">
+<div class="w-full flex flex-col items-center justify-center">
+<p class="w-full font-headline-md text-headline-md text-on-surface text-center select-none cursor-default transition-transform duration-150 active:scale-95 break-words" id="greeting_message" title="res/values/strings.xml: greeting_message" style="color: rgb(29, 27, 32);">
+      こんにちは、Android！
+    </p>
+</div>
+</div>
+<script>
+  (() => {
+    // Subtle educational delight: long-press / double-tap to inspect resource origin for students
+    const textEl = document.getElementById('greeting_message');
+    if (!textEl) return;
+
+    let clickCount = 0;
+    let timer = null;
+
+    textEl.addEventListener('click', () => {
+      clickCount++;
+      if (clickCount === 1) {
+        timer = setTimeout(() => {
+          clickCount = 0;
+        }, 350);
+      } else if (clickCount === 2) {
+        clearTimeout(timer);
+        clickCount = 0;
+        
+        // Gentle haptic-style visual pulse demonstrating standard Android View interaction
+        textEl.style.transition = 'opacity 0.2s ease, transform 0.2s ease';
+        textEl.style.opacity = '0.4';
+        textEl.style.transform = 'scale(0.97)';
+        
+        setTimeout(() => {
+          textEl.style.opacity = '1';
+          textEl.style.transform = 'scale(1)';
+        }, 200);
+      }
+    });
+  })();
+</script></main><div class="fixed bottom-0 inset-x-0 z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-1px_8px_rgba(0,0,0,0.02)] select-none pointer-events-none" style="background-color: rgba(254, 247, 255, 0.9);"><div class="h-6 flex items-center justify-center"><div class="w-24 h-1 rounded-full bg-on-surface/40" style="background-color: rgba(29, 27, 32, 0.4);"></div></div></div>
+
+</body></html>
