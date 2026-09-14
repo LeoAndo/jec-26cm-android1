@@ -9,9 +9,11 @@ from pathlib import Path
 import re
 import subprocess
 import sys
+import tempfile
 from urllib.parse import urlsplit
 
 import package_classroom_materials as packaging
+from materials_lock import distribution_lock
 
 ROOT = Path(__file__).resolve().parents[1]
 STATE = ROOT / 'distributions/workflow.json'
@@ -32,9 +34,15 @@ def load():
 
 
 def save(state):
-    temp = STATE.with_suffix('.json.tmp')
-    temp.write_text(json.dumps(state, ensure_ascii=False, indent=2) + '\n')
-    temp.replace(STATE)
+    with tempfile.NamedTemporaryFile(mode='w', encoding='utf-8', dir=STATE.parent,
+                                     prefix=STATE.name + '.', suffix='.tmp', delete=False) as file:
+        temp = Path(file.name)
+        try:
+            file.write(json.dumps(state, ensure_ascii=False, indent=2) + '\n')
+            file.close()
+            temp.replace(STATE)
+        finally:
+            temp.unlink(missing_ok=True)
 
 
 def classroom_url(value):
@@ -109,7 +117,7 @@ def source_snapshot(assignment):
     files, _ = packaging.collect(materials)
     if assignment == 'A02':
         teacher = materials.parent / 'teacher'
-        files += [teacher / 'steps.json', teacher / 'render_materials.py', teacher / 'check_materials.py']
+        files += [teacher / name for name in ('steps.json', 'render_materials.py', 'check_materials.py', 'assemble.py')]
     return {str(p.relative_to(ROOT)): digest(p) for p in files}
 
 
@@ -364,43 +372,48 @@ def main():
     p = commands.add_parser('status')
     p.add_argument('--check', action='store_true', help='未対応・未掲載・教材差分があれば終了コード1')
     args = parser.parse_args()
-    state = load()
     for key, value in vars(args).items():
         if isinstance(value, str) and not value.strip():
             parser.error(f'{key}は空にできません')
     try:
-        if args.command == 'import-feedback':
-            import_feedback(state, args)
-        elif args.command == 'source':
-            configure_source(state, args)
-        elif args.command in ('drive-target', 'bind-drive-file'):
-            configure_drive(state, args)
-        elif args.command == 'upload-plan':
-            upload_plan(state, args)
-            return 0
-        elif args.command == 'prepare':
-            prepare(state, args)
-        elif args.command == 'target':
-            course_key(args.url)
-            if any(t['id'] == args.id for t in state['targets']):
-                raise ValueError('同じ配布先IDは登録済みです')
-            state['targets'].append({'id': args.id, 'courseUrl': args.url})
-            save(state)
-        elif args.command == 'decide-no-change':
-            feedback = next((f for f in state['feedback'] if f['id'] == args.feedback), None)
-            if feedback is None:
-                raise ValueError('FBが見つかりません')
-            if any(args.feedback in r['feedback'] for r in state['releases']):
-                raise ValueError('すでに配布版に対応付けられたFBです')
-            feedback['decision'] = {'reason': args.reason, 'at': now()}
-            save(state)
-        elif args.command == 'record-delivery':
-            record_delivery(state, args)
-        pending = status(state)
-        if args.command == 'status' and args.check and pending:
-            return 1
+        with distribution_lock(STATE.parent):
+            return execute(load(), args)
     except (ValueError, OSError, subprocess.CalledProcessError) as error:
         parser.exit(2, str(error) + '\n')
+
+
+def execute(state, args):
+    """呼び出し元が台帳読込前からロックを保持する。"""
+    if args.command == 'import-feedback':
+        import_feedback(state, args)
+    elif args.command == 'source':
+        configure_source(state, args)
+    elif args.command in ('drive-target', 'bind-drive-file'):
+        configure_drive(state, args)
+    elif args.command == 'upload-plan':
+        upload_plan(state, args)
+        return 0
+    elif args.command == 'prepare':
+        prepare(state, args)
+    elif args.command == 'target':
+        course_key(args.url)
+        if any(t['id'] == args.id for t in state['targets']):
+            raise ValueError('同じ配布先IDは登録済みです')
+        state['targets'].append({'id': args.id, 'courseUrl': args.url})
+        save(state)
+    elif args.command == 'decide-no-change':
+        feedback = next((f for f in state['feedback'] if f['id'] == args.feedback), None)
+        if feedback is None:
+            raise ValueError('FBが見つかりません')
+        if any(args.feedback in r['feedback'] for r in state['releases']):
+            raise ValueError('すでに配布版に対応付けられたFBです')
+        feedback['decision'] = {'reason': args.reason, 'at': now()}
+        save(state)
+    elif args.command == 'record-delivery':
+        record_delivery(state, args)
+    pending = status(state)
+    if args.command == 'status' and args.check and pending:
+        return 1
     return 0
 
 

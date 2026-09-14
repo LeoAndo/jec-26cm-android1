@@ -40,6 +40,8 @@ python3 -B scripts/materials_workflow.py source \
 
 リポジトリのルートで実行する。授業で先へ進めない不具合は優先して直し、誤字・補足などは同じ版にまとめる。手順の根拠と再現結果を確認してから変更する。
 
+macOS/Linuxでは、更新管理コマンドと単独のZIP作成コマンドを同じ作業コピー内で直列化する。台帳を読む前から保存・状況出力までロックし、同時に開始したコマンドは順番に実行する。別のGit作業コピー間の台帳統合はこのロックの対象外で、運用には共通の作業コピーを使う。
+
 ### 1. 回答を取り込む
 
 回答をCSVで保存し、回答シートのURLを付けて取り込む。列名は上表に合わせる。[列名だけのCSV](../distributions/feedback-columns.csv)を照合に使える。
@@ -70,7 +72,7 @@ python3 -B scripts/materials_workflow.py decide-no-change \
 
 ```sh
 python3 -B scripts/materials_workflow.py prepare \
-  --assignment A02 --version 2026-09-14-r2 \
+  --assignment A02 --version 2026-09-14-r3 \
   --feedback FB-0001 \
   --changes '第9回のボタン処理で、コードを追加する位置を明記しました。' \
   --student-action '第9回を進めている人は、新しい教材の手順を確認してください。' \
@@ -87,7 +89,7 @@ python3 -B scripts/materials_workflow.py prepare \
 | `A02-materials-版.manifest.json` | 収録ファイルとハッシュの教員用記録 |
 | `A02-materials-版.classroom-update.txt` | 変更内容と学生が行うことの投稿原稿 |
 
-登録済みの版名は再利用しない。パッケージ作成だけを同じ版で実行した場合も、内容が違えば上書きを拒否する。直後に教材をさらに修正すると、`status`が「教材変更あり」と表示し、そのZIPの掲載完了記録を拒否する。
+登録済みの版名は再利用しない。パッケージ作成だけを同じ版で実行した場合も、内容が違えば上書きを拒否する。ZIPが欠落していても、manifestまたは台帳に記録したハッシュと同一の場合だけ復元する。入口から参照できない学生用HTMLが残る場合も作成を止める。直後に教材をさらに修正すると、`status`が「教材変更あり」と表示し、そのZIPの掲載完了記録を拒否する。
 
 ### 4. Classroomへ掲載し、学生向けに案内する
 
@@ -112,7 +114,7 @@ python3 -B scripts/materials_workflow.py bind-drive-file \
 
 ```sh
 python3 -B scripts/materials_workflow.py record-delivery \
-  --assignment A02 --version 2026-09-14-r2 --target android1 \
+  --assignment A02 --version 2026-09-14-r3 --target android1 \
   --material-url 'Classroomに掲載した資料のURL' \
   --notice-url '学生向けの更新案内のURL' \
   --downloaded-zip '/Classroomから再取得したZIPの保存場所.zip' \
@@ -150,4 +152,4 @@ Classroomの公開済み資料の添付差し替えを、通常のClassroom API�
 python3 -B -m unittest discover -s scripts -p 'test_*.py' -v
 ```
 
-一時ディレクトリ内のテスト用教材と回答で15件を確認。重複CSV、途中に不正行を含むCSV、別の回答シートからの取込、同じ版の変更、ZIP作成後の教材変更、誤ったZIP・クラス、複数クラスの配布漏れ、未掲載FBの引き継ぎ、未登録ZIP、欠落リンク、固定DriveファイルIDの計画などを扱う。実際の台帳へテスト回答や架空の掲載済み記録は追加しない。
+一時ディレクトリ内のテスト用教材と回答で19件を確認。重複CSV、不正CSV、別シートの取込、版の固定、教材変更、ZIP・クラスの取り違え、掲載漏れ、未掲載FBの引き継ぎ、未登録ZIP、欠落リンク、固定DriveファイルIDに加え、独立プロセスの同時実行、削除ZIPの復元、最適化したPythonでの不整合検出、入口から孤立したページを扱う。実際の台帳へテスト回答や架空の掲載済み記録は追加しない。

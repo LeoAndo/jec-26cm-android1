@@ -7,7 +7,7 @@ GoogleフォームのFBと再掲載は[更新手順](../docs/materials-maintenan
 | 課題 | ZIP | 収録ファイル | 展開後の参照検査 |
 | --- | --- | --- | --- |
 | A01 はじめてのアプリ | [2026-09-14-r1](classroom/A01-materials-2026-09-14-r1.zip) | 7 | 83件成功 |
-| A02 自己紹介カード | [2026-09-14-r1](classroom/A02-materials-2026-09-14-r1.zip) | 50 | 142件成功 |
+| A02 自己紹介カード | [2026-09-14-r2](classroom/A02-materials-2026-09-14-r2.zip) | 50 | 142件成功 |
 
 両ZIPは、入口のindex.html・学生向けHTML・参照する画像やコード等を含む。教員用の完成解答・制作記録を含めない。学生の提出物はAPKファイル1つのみ。
 
@@ -17,7 +17,7 @@ GoogleフォームのFBと再掲載は[更新手順](../docs/materials-maintenan
 
 ```sh
 python3 -B scripts/materials_workflow.py prepare \
-  --assignment A02 --version 2026-09-14-r2 \
+  --assignment A02 --version 2026-09-14-r3 \
   --changes '実際に修正した手順と内容' \
   --student-action '学生が新しい教材で確認すること' \
   --verification '実際の検証結果と残件'
@@ -32,11 +32,11 @@ FBの修正には`--feedback FB-0001`など、実際の取込IDを加える。Cl
 ```sh
 python3 -B assignments/A02-profile-card/teacher/render_materials.py
 python3 -B assignments/A02-profile-card/teacher/check_materials.py
-python3 -B scripts/package_classroom_materials.py --version 2026-09-14-r1
+python3 -B scripts/package_classroom_materials.py --assignment A02 --version 2026-09-14-r2
 ```
 
 一方だけ作る場合は`--assignment A01`または`--assignment A02`を追加する。出力先を変える場合は`--output /任意のフォルダー`を指定する。ZIPと同名のmanifest.jsonに版・ZIPハッシュ・ファイルごとのハッシュ・参照数が残る。
 
 パッケージだけの作成では配布管理へ登録されない。未登録の新版は`status`へ残るため、通常の更新には`materials_workflow.py prepare`を使う。
 
-`materials/index.html`からたどれるファイルを収録する方式のため、教材へ新しい画像やコードを加えた場合も、その参照から自動収録される。教員用ファイルへのリンクや見つからないファイルがあれば生成を失敗させる。ZIPの中でも元の相対パスを維持する。
+`materials/index.html`からたどれるファイルを収録する方式のため、教材へ新しい画像やコードを加えた場合も、その参照から自動収録される。教員用ファイルへのリンク、見つからないファイル、入口から孤立した学生用HTMLがあれば生成を失敗させる。ZIPの中でも元の相対パスを維持する。

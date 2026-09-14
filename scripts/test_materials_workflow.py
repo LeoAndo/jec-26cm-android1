@@ -5,12 +5,18 @@ from contextlib import redirect_stdout
 import csv
 import io
 import json
+import os
 from pathlib import Path
+import shutil
+import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
 
 import materials_workflow as workflow
+
+REPO = Path(__file__).resolve().parents[1]
 
 
 class WorkflowTest(unittest.TestCase):
@@ -98,6 +104,78 @@ class WorkflowTest(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, '準備時から変わりました'):
             workflow.record_delivery(self.state, args)
         self.assertEqual({}, release['deliveries'])
+
+    def test_deleted_archive_can_only_restore_original_content(self):
+        release = self.prepare()
+        archive = self.output / release['archive']
+        original = archive.read_bytes()
+        manifest = archive.with_suffix('.manifest.json')
+        original_manifest = manifest.read_bytes()
+        archive.unlink()
+        workflow.packaging.package('A01', 'r1', self.output)
+        self.assertEqual(original, archive.read_bytes())
+        archive.unlink()
+        (self.materials / 'lesson.html').write_text('<p id="step1">変更後</p>')
+        with self.assertRaisesRegex(ValueError, '同じ版'):
+            workflow.packaging.package('A01', 'r1', self.output)
+        self.assertFalse(archive.exists())
+        self.assertEqual(original_manifest, manifest.read_bytes())
+        # manifestも欠落していても、登録済み版の台帳が保護する。
+        manifest.unlink()
+        with self.assertRaisesRegex(ValueError, '同じ版'):
+            workflow.packaging.package('A01', 'r1', self.output)
+        self.assertFalse(archive.exists())
+
+    def test_unlinked_lesson_blocks_packaging(self):
+        (self.materials / 'exercise.html').write_text('<h1>抜け落ちた演習</h1>')
+        with self.assertRaisesRegex(ValueError, '入口から参照されない教材ページ: exercise.html'):
+            self.prepare()
+        self.assertEqual([], workflow.load()['releases'])
+
+    def test_concurrent_commands_preserve_both_records(self):
+        shutil.copytree(REPO / 'scripts', self.root / 'scripts',
+                        ignore=shutil.ignore_patterns('__pycache__'))
+        commands = [[sys.executable, '-B', str(self.root / 'scripts/materials_workflow.py'),
+                     'target', '--id', name, '--url', f'https://classroom.google.com/c/{name}']
+                    for name in ('first', 'second')]
+        # 親がロックを持つ間は、子のCLIが台帳の読込・更新まで進めない。
+        with workflow.distribution_lock(self.state_file.parent):
+            processes = [subprocess.Popen(command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+                         for command in commands]
+            for process in processes:
+                self.addCleanup(lambda p=process: p.kill() if p.poll() is None else None)
+            for process in processes:
+                with self.assertRaises(subprocess.TimeoutExpired):
+                    process.communicate(timeout=0.2)
+            self.assertEqual([], workflow.load()['targets'])
+        for process in processes:
+            _, error = process.communicate(timeout=10)
+            self.assertEqual(0, process.returncode, error.decode())
+        self.assertEqual({'first', 'second'}, {t['id'] for t in workflow.load()['targets']})
+        self.assertFalse(list(self.state_file.parent.glob('workflow.json.*.tmp')))
+
+    def test_optimized_python_rejects_material_mismatches(self):
+        copied = self.root / 'assignments/A02-profile-card'
+        shutil.copytree(REPO / 'assignments/A02-profile-card', copied)
+        env = dict(os.environ, PYTHONOPTIMIZE='1')
+        checker = copied / 'teacher/check_materials.py'
+        page = copied / 'materials/index.html'
+        original = page.read_bytes()
+        page.write_text(page.read_text() + '<div id="duplicate"></div><div id="duplicate"></div>')
+        result = subprocess.run([sys.executable, '-B', str(checker)], env=env,
+                                capture_output=True, text=True)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn('教材の整合確認に失敗', result.stderr)
+        page.write_bytes(original)
+        # assemble単体でも開始ファイルの不一致を拒否する。
+        starter = copied / 'starter/A02ProfileCard/app/src/main/res/values/strings.xml'
+        starter.write_text(starter.read_text() + '\n<!-- mismatch -->')
+        result = subprocess.run([sys.executable, '-B', str(copied / 'teacher/assemble.py'),
+                                 str(self.root / 'replayed'), '--stage', '4'], env=env,
+                                capture_output=True, text=True)
+        self.assertNotEqual(0, result.returncode)
+        self.assertIn('教材の整合確認に失敗', result.stderr)
+        self.assertFalse((self.root / 'replayed').exists())
 
     def test_wrong_download_blocks_delivery(self):
         self.target()

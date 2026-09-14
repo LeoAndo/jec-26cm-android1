@@ -9,6 +9,7 @@ import re
 import tempfile
 from urllib.parse import unquote, urlsplit
 from zipfile import ZipFile, ZipInfo, ZIP_DEFLATED
+from materials_lock import distribution_lock
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSIGNMENTS = {'A01': 'A01-first-app', 'A02': 'A02-profile-card'}
@@ -81,6 +82,9 @@ def collect(materials):
                     raise ValueError(f'アンカーがない: {relative}: {ref}')
             pending.append(target)
             references += 1
+    missing = {p.resolve() for p in materials.glob('*.html')} - seen
+    if missing:
+        raise ValueError('入口から参照されない教材ページ: ' + ', '.join(sorted(p.name for p in missing)))
     return sorted(seen), references
 
 
@@ -125,9 +129,20 @@ Classroomのプレビューの中ではなく、展開した教材を開きま�
         for relative, data in contents.items():
             if (extracted / relative).read_bytes() != data:
                 raise ValueError(f'展開後の内容が一致しない: {relative}')
-        if archive.exists() and archive.read_bytes() != candidate.read_bytes():
+        candidate_bytes = candidate.read_bytes()
+        candidate_hash = hashlib.sha256(candidate_bytes).hexdigest()
+        recorded_hashes = []
+        existing_manifest = archive.with_suffix('.manifest.json')
+        if existing_manifest.exists():
+            recorded_hashes.append(json.loads(existing_manifest.read_text())['sha256'])
+        ledger = ROOT / 'distributions/workflow.json'
+        if ledger.exists():
+            recorded_hashes += [r['sha256'] for r in json.loads(ledger.read_text())['releases']
+                                if r['assignment'] == assignment and r['version'] == version]
+        if (archive.exists() and archive.read_bytes() != candidate_bytes) or any(
+                recorded != candidate_hash for recorded in recorded_hashes):
             raise ValueError(f'同じ版の内容は変更できません。新しい--versionを指定してください: {archive.name}')
-        archive.write_bytes(candidate.read_bytes())
+        archive.write_bytes(candidate_bytes)
     manifest = {
         'assignment': assignment, 'version': version, 'status': 'teacher-review',
         'archive': archive.name, 'sha256': hashlib.sha256(archive.read_bytes()).hexdigest(),
@@ -148,5 +163,6 @@ if __name__ == '__main__':
     args = parser.parse_args()
     if not re.fullmatch(r'[A-Za-z0-9][A-Za-z0-9._-]*', args.version):
         parser.error('版は英数字・ピリオド・ハイフン・アンダースコアで指定してください')
-    for assignment in args.assignment or ASSIGNMENTS:
-        package(assignment, args.version, args.output)
+    with distribution_lock(ROOT / 'distributions'):
+        for assignment in args.assignment or ASSIGNMENTS:
+            package(assignment, args.version, args.output)
