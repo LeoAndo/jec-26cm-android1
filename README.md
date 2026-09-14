@@ -4,6 +4,7 @@ Android Javaアプリ開発の初心者向けに、演習・課題アプリの�
 
 - [授業計画（Markdown原稿・総120時間）](docs/course-plan.md)
 - [教材作成方針：やさしい日本語・HTMLハンズオン](docs/teaching-materials-guide.md)
+- [AIエージェント共通の課題作成スキル](skills/android-assignment-authoring/SKILL.md)（仕様整理→Stitch情報の受領→HTML教材と人間による確認を進めるときに、対象課題と現在の段階を指定して読み込ませます。）
 - [AIエージェント共通の教材PRレビュー用スキル](skills/android-materials-review/SKILL.md)（レビュー時にこのファイルと対象差分を読み込ませます。）
 - [A01：はじめてのアプリ — 要件・アプリ仕様案](assignments/A01-first-app/README.md)
 
