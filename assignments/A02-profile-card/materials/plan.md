@@ -7,7 +7,7 @@
 | 項目 | 記録 |
 | --- | --- |
 | 基点 | 2026年9月14日20:28:35 JSTのgit fetch origin mainで取得したa464d1c29946c2311875e27fcc413942a013a081。origin/mainのreflogで確認。 |
-| 作業ブランチ | codex/a02-profile-layout。[Issue #6](https://github.com/LeoAndo/jec-26cm-android1/issues/6)に対応する教員確認用PRとして提出する。 |
+| 作業ブランチ | codex/a02-profile-layout。[Issue #6](https://github.com/LeoAndo/jec-26cm-android1/issues/6)に対応する[PR #7](https://github.com/LeoAndo/jec-26cm-android1/pull/7)を教員確認用として作成済み。マージは人間が行う。 |
 | 仕様 | [課題README](../README.md)。第2〜4週、第5〜16回、18時間。 |
 | Stitch | [取得記録](../design/stitch.md)。ユーザーの依頼で生成・修正をブラウザーから送信。6状態のHTMLとプロフィール素材を取得。MCP未接続。 |
 | テーマ方針 | ユーザーの追加指示によりテンプレートのDayNightを維持。Light固定の準備を取り消した。テーマ編集や表示モード切り替えを学生に要求しない。A01と上位方針も同じ方針へ修正。 |
