@@ -93,6 +93,7 @@ Javaの文法、変数、条件分岐の事前知識は求めない。MainActivi
 
 | 項目 | 条件 |
 | --- | --- |
+| 学生のPC | 全員macOSを使用する。 |
 | Android Studio | Panda 2 \| 2025.3.2 |
 | プロジェクト名 | A01FirstApp |
 | 作成テンプレート・Minimum SDK | Empty Views Activity・API 24（教材初版の設定案。Panda 2で通し確認する）。 |

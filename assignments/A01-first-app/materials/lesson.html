@@ -89,7 +89,7 @@
 <h3>やってみよう</h3>
 <ol class="steps">
 <li>Android Studioを開きます。</li>
-<li>Windowsでは <strong>Help → About</strong>、macOSでは <strong>Android Studio → About Android Studio</strong> を開きます。</li>
+<li><strong>Android Studio → About Android Studio</strong> を開きます。</li>
 <li>バージョンが <strong>Panda 2 | 2025.3.2</strong> か確かめます。</li>
 <li>バージョンの画面を閉じます。</li>
 <li>教員と一緒に、使うエミュレーターの名前を確かめます。</li>
@@ -203,8 +203,7 @@
 <p class="place"><strong>操作する場所</strong>　Android StudioのProject（ファイル一覧）</p>
 <h3>やってみよう</h3>
 <ol class="steps">
-<li><strong>View → Tool Windows → Project</strong> を選びます。</li>
-<li>ファイル一覧の上部で、表示方法を <strong>Project</strong> にします。</li>
+<li>左側の <strong>Project</strong> で、<code>A01FirstApp</code> の横の矢印を押して開きます。</li>
 <li>フォルダーの横の矢印を押して、<code>app → src → main</code> の順に開きます。</li>
 <li>下の表にあるファイルを、1つずつダブルクリックします。</li>
 </ol>
@@ -245,6 +244,7 @@
 </div>
 <details open>
 <summary>うまくいかないとき</summary>
+<p>Projectの一覧が見えない場合は、左端のフォルダーの形のボタンを押します。表示方法がProject以外の場合は、一覧上部で <strong>Project</strong> を選びます。</p>
 <p>同じ名前がある場合は、<code>app/src/main</code> からの場所を比べてください。ファイルが見つからない場合は、ファイル一覧を教員に見せてください。別の場所に同じファイルを作らずに確認しましょう。</p>
 </details>
 <nav class="step-nav" aria-label="手順05の前後"><a href="lesson.html#step-04">← 04 まずアプリを動かしてみよう</a><a href="lesson.html#step-06">06 画面に文字を置こう →</a>
@@ -261,11 +261,10 @@
 <ol class="steps">
 <li>下に指定されたファイルをAndroid Studioで開きます。</li>
 <li>教材のコード欄の中だけを選択します。「コードを保存」からテキストを開いて選択してもよいです。</li>
-<li>Windowsは <kbd>Ctrl</kbd> + <kbd>C</kbd>、macOSは <kbd>⌘</kbd> + <kbd>C</kbd> でコピーします。</li>
+<li><kbd>⌘</kbd> + <kbd>C</kbd> でコピーします。</li>
 <li>Android Studioのファイルの文字がある場所をクリックします。</li>
-<li>Windowsは <kbd>Ctrl</kbd> + <kbd>A</kbd>、macOSは <kbd>⌘</kbd> + <kbd>A</kbd> で、そのファイルの文字を全部選択します。</li>
-<li>Windowsは <kbd>Ctrl</kbd> + <kbd>V</kbd>、macOSは <kbd>⌘</kbd> + <kbd>V</kbd> で貼り付けます。</li>
-<li><strong>File → Save All</strong>（すべて保存）を選びます。</li>
+<li><kbd>⌘</kbd> + <kbd>A</kbd> で、そのファイルの文字を全部選択します。</li>
+<li><kbd>⌘</kbd> + <kbd>V</kbd> で貼り付けます。</li>
 </ol>
 <div class="note">下の4種類は、いずれも<strong>ファイル全体を置き換える</strong>コードです。ファイル名を確かめてから貼り付けます。途中で赤い線が出ても、4種類をそろえるまで進めます。
 </div>
@@ -348,7 +347,6 @@ public class MainActivity extends Activity {
 <ol class="steps">
 <li><code>app/src/main/res/values-night</code> があるか確かめます。</li>
 <li>その中に <code>themes.xml</code> がある場合は、全体を④と同じコードに置き換えます。ない場合は、この操作は不要です。</li>
-<li><strong>File → Save All</strong> を選びます。</li>
 </ol>
 <p>「night」の設定も同じにすることで、スマートフォンが暗い色の設定でも、今回の画面は白く表示します。</p>
 <h3>⑤ 教員と登録を確かめる</h3>
@@ -377,11 +375,11 @@ public class MainActivity extends Activity {
 </tbody>
 </table>
 </div>
-<div class="result"><strong>こうなればOK</strong>4種類のコードを保存しました。画面の言葉は、まだ Hello, Android! です。次の手順で動かします。
+<div class="result"><strong>こうなればOK</strong>4種類のコードを貼り付けました。画面の言葉は、まだ Hello, Android! です。次の手順で動かします。
 </div>
 <details open>
 <summary>うまくいかないとき</summary>
-<p>貼り付け先を間違えたら、すぐに <strong>Edit → Undo</strong>（元に戻す）を選びます。4種類を保存した後も赤い線が残る場合は、ファイル名と赤い線を教員に見せてください。先頭の <code>package</code> が違う場合も教員と確認します。</p>
+<p>貼り付け先を間違えたら、すぐに <strong>Edit → Undo</strong>（元に戻す）を選びます。4種類を貼り付けた後も赤い線が残る場合は、ファイル名と赤い線を教員に見せてください。先頭の <code>package</code> が違う場合も教員と確認します。</p>
 </details>
 <nav class="step-nav" aria-label="手順06の前後"><a href="lesson.html#step-05">← 05 使うファイルを開いてみよう</a><a href="lesson.html#step-07">07 英語のあいさつを確かめよう →</a>
 </nav>
@@ -394,7 +392,6 @@ public class MainActivity extends Activity {
 <p class="place"><strong>操作する場所</strong>　Android Studioと、練習用のスマートフォン</p>
 <h3>やってみよう</h3>
 <ol class="steps">
-<li><strong>File → Save All</strong> を選びます。</li>
 <li><strong>Run → Run 'app'</strong> を選びます。</li>
 <li>新しくビルドしたアプリが表示されるまで待ちます。</li>
 <li>白い背景のまん中に <strong>Hello, Android!</strong> と出ているか確かめます。</li>
@@ -459,7 +456,6 @@ public class MainActivity extends Activity {
 <li><a href="#step-05">手順05の場所</a>から <code>strings.xml</code> を開きます。</li>
 <li><code>Hello, Android!</code> を探します。</li>
 <li>その言葉だけを <code>こんにちは、Android！</code> に書き換えます。</li>
-<li><strong>File → Save All</strong> を選びます。</li>
 <li><strong>Run → Run 'app'</strong> を選びます。</li>
 <li>アプリが表示されるまで待ちます。</li>
 <li>画面の言葉を読みます。</li>
@@ -486,7 +482,7 @@ public class MainActivity extends Activity {
 </div>
 <details open>
 <summary>うまくいかないとき</summary>
-<p>まだ英語が出る場合は、保存後にもう一度Runを選び、完了まで待ちます。赤い線が出た場合は、上の「ファイル全体」と前後の記号を比べます。直せない場合は、開いているファイルを教員に見せてください。</p>
+<p>まだ英語が出る場合は、文字を変更した後にもう一度Runを選び、完了まで待ちます。赤い線が出た場合は、上の「ファイル全体」と前後の記号を比べます。直せない場合は、開いているファイルを教員に見せてください。</p>
 </details>
 <nav class="step-nav" aria-label="手順09の前後"><a href="lesson.html#step-08">← 08 表示する言葉を探そう</a><a href="exercise.html#step-10">10 自分で少し変えてみよう →</a>
 </nav>
