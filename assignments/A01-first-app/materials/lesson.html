@@ -1,0 +1,499 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Android Javaを初めて学ぶ人のためのA01教材。画面に文字を表示し、言葉を変えて確かめます。">
+<title>画面に、あいさつを出そう。 | A01 はじめてのアプリ</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body id="top"><a class="skip" href="#main">本文へ進む</a>
+<header class="topbar"><a class="brand" href="lesson.html">ANDROID / JAVA　A01</a><span class="edition">はじめてのアプリ · 教員確認用 初版</span>
+</header>
+<div class="shell">
+<aside class="sidebar">
+<nav aria-label="教材の目次">
+<div class="nav-label">学習の道順 / 全12手順
+</div>
+<ol>
+<li><a href="lesson.html#step-01" aria-current="page">01　今回つくるアプリを見よう</a></li>
+<li><a href="lesson.html#step-02">02　はじめる前に確かめよう</a></li>
+<li><a href="lesson.html#step-03">03　アプリを作る準備をしよう</a></li>
+<li><a href="lesson.html#step-04">04　まずアプリを動かしてみよう</a></li>
+<li><a href="lesson.html#step-05">05　使うファイルを開いてみよう</a></li>
+<li><a href="lesson.html#step-06">06　画面に文字を置こう</a></li>
+<li><a href="lesson.html#step-07">07　英語のあいさつを確かめよう</a></li>
+<li><a href="lesson.html#step-08">08　表示する言葉を探そう</a></li>
+<li><a href="lesson.html#step-09">09　日本語のあいさつに変えよう</a></li>
+<li><a href="exercise.html#step-10">10　自分で少し変えてみよう</a></li>
+<li><a href="checklist.html#step-11">11　できたか確かめよう</a></li>
+<li><a href="checklist.html#step-12">12　提出して、振り返ろう</a></li>
+</ol>
+</nav>
+<p class="nav-note">全4回・各90分。<br>時間には、質問や待ち時間も含みます。早さは評価しません。</p>
+</aside>
+<main id="main">
+<header class="hero">
+<div class="eyebrow">はじめてのアプリ
+</div>
+<h1>画面に、あいさつを出そう。</h1>
+<p class="lead">まず動かす。文字を変える。もう一度、確かめる。小さなアプリを自分の手で作ります。</p>
+<div class="chips"><span class="chip">Java + XML</span><span class="chip">Android Studio Panda 2</span><span class="chip">はじめてでも、1つずつ</span>
+</div>
+</header>
+<section class="card" id="step-01" aria-labelledby="heading-01">
+<div class="step-meta"><span>STEP 01</span><span>第1回 / 目安 15分</span>
+</div>
+<h2 id="heading-01">今回つくるアプリを見よう</h2>
+<p>画面にあいさつを出すアプリを作ります。今日は、文字を変えて、動いたことを確かめる練習です。</p>
+<p class="place"><strong>操作する場所</strong>　この教材</p>
+<figure class="figure">
+<div class="phone" role="img" aria-label="説明図。白い画面の中央にこんにちは、Android！と表示。">
+<div class="phone-top" aria-hidden="true">システムの表示領域
+</div>
+<div class="phone-text" aria-hidden="true">こんにちは、Android！
+</div>
+<div class="phone-bottom" aria-hidden="true">システムの操作領域
+</div>
+</div>
+<figcaption class="caption">完成イメージ（説明図）。実際のアプリの写真ではありません。</figcaption>
+</figure>
+<h3>やってみよう</h3>
+<ol class="steps">
+<li>説明図の文字を読んでください。</li>
+<li>画面のどこに文字があるか、指で示してください。</li>
+<li>「文字を変えると、何が変わるかな」と考えてください。</li>
+</ol>
+<ul class="flow">
+<li>① 作る</li>
+<li>② 動かす</li>
+<li>③ 文字を変える</li>
+<li>④ 確かめる</li>
+</ul>
+<div class="result"><strong>こうなればOK</strong>「白い画面のまん中に、あいさつを出す」と言えます。指で示してもよいです。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>「アプリ」は、スマートフォンで使うソフトです。今回は、ボタンを押す機能はありません。</p>
+</details>
+<nav class="step-nav" aria-label="手順01の前後"><a href="#top">↑ はじめに</a><a href="lesson.html#step-02">02 はじめる前に確かめよう →</a>
+</nav>
+</section>
+<section class="card" id="step-02" aria-labelledby="heading-02">
+<div class="step-meta"><span>STEP 02</span><span>第1回 / 目安 20分</span>
+</div>
+<h2 id="heading-02">はじめる前に確かめよう</h2>
+<p>アプリを作る道具と、練習用のスマートフォンを確かめます。</p>
+<p class="place"><strong>操作する場所</strong>　Android Studio（アンドロイド スタジオ）</p>
+<p>パソコンの中で動く練習用のスマートフォンを「エミュレーター」と呼びます。授業では、教員が指定したものを使います。</p>
+<h3>やってみよう</h3>
+<ol class="steps">
+<li>Android Studioを開きます。</li>
+<li>Windowsでは <strong>Help → About</strong>、macOSでは <strong>Android Studio → About Android Studio</strong> を開きます。</li>
+<li>バージョンが <strong>Panda 2 | 2025.3.2</strong> か確かめます。</li>
+<li>バージョンの画面を閉じます。</li>
+<li>教員と一緒に、使うエミュレーターの名前を確かめます。</li>
+</ol>
+<div class="note">エミュレーターの作成と必要なファイルのダウンロードは、授業前に教員と済ませておきます。名前がわからない場合は、先に教員へ伝えてください。
+</div>
+<div class="result"><strong>こうなればOK</strong>指定されたAndroid Studioを開き、使うエミュレーターの名前がわかります。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>バージョンが違う場合は、画面を教員に見せてください。インストールが進まない場合は、表示されている文章を消さずに見せてください。</p>
+</details>
+<nav class="step-nav" aria-label="手順02の前後"><a href="lesson.html#step-01">← 01 今回つくるアプリを見よう</a><a href="lesson.html#step-03">03 アプリを作る準備をしよう →</a>
+</nav>
+</section>
+<section class="card" id="step-03" aria-labelledby="heading-03">
+<div class="step-meta"><span>STEP 03</span><span>第1回 / 目安 40分</span>
+</div>
+<h2 id="heading-03">アプリを作る準備をしよう</h2>
+<p>アプリを作るためのファイル一式を用意します。このまとまりを「プロジェクト」と呼びます。</p>
+<p class="place"><strong>操作する場所</strong>　Android Studio → New Project</p>
+<h3>やってみよう</h3>
+<ol class="steps">
+<li>最初の画面で <strong>New Project</strong>（新しいプロジェクト）を押します。すでにプロジェクトを開いている場合は <strong>File → New → New Project</strong> を選びます。</li>
+<li><strong>Phone and Tablet</strong> の中から <strong>Empty Views Activity</strong> を選びます。</li>
+<li><strong>Next</strong>（次へ）を押します。</li>
+<li>下の表のとおりに入力・選択します。</li>
+</ol>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th scope="col">欄の名前</th>
+<th scope="col">入力・選択する内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Name（プロジェクト名）</td>
+<td><code>A01FirstApp</code></td>
+</tr>
+<tr>
+<td>Package name（アプリを区別する名前）</td>
+<td><code>jp.ac.jec.a01firstapp</code></td>
+</tr>
+<tr>
+<td>Save location（保存する場所）</td>
+<td>自分が見つけられる場所。最後のフォルダー名は <code>A01FirstApp</code>。</td>
+</tr>
+<tr>
+<td>Language（使う言語）</td>
+<td><strong>Java</strong></td>
+</tr>
+<tr>
+<td>Minimum SDK（対応するAndroidの下限）</td>
+<td><strong>API 24</strong></td>
+</tr>
+<tr>
+<td>その他の欄</td>
+<td>最初の設定を使います。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<ol class="steps">
+<li>Save locationに表示された場所を、ノートに書きます。</li>
+<li><strong>Finish</strong>（完了）を押します。</li>
+<li>画面下の準備中の表示が終わるまで待ちます。</li>
+</ol>
+<div class="note"><strong>Empty Views Activity</strong> と <strong>Empty Activity</strong> は別のものです。今回は「Views」が入った名前を選びます。Javaが選べないときは、前の画面へ戻って名前を確かめます。
+</div>
+<div class="result"><strong>こうなればOK</strong>A01FirstAppが開き、ファイル一覧が表示されます。準備中の表示が終わっています。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>ダウンロード中は時間がかかることがあります。失敗した文章が出た場合は、文章とインターネットの接続状態を教員に見せてください。新しいプロジェクトを何個も作る必要はありません。</p>
+</details>
+<nav class="step-nav" aria-label="手順03の前後"><a href="lesson.html#step-02">← 02 はじめる前に確かめよう</a><a href="lesson.html#step-04">04 まずアプリを動かしてみよう →</a>
+</nav>
+</section>
+<section class="card" id="step-04" aria-labelledby="heading-04">
+<div class="step-meta"><span>STEP 04</span><span>第1回 / 目安 15分</span>
+</div>
+<h2 id="heading-04">まずアプリを動かしてみよう</h2>
+<p>最初に用意されたアプリを動かします。まだ完成図と違っていても大丈夫です。</p>
+<p class="place"><strong>操作する場所</strong>　Android Studioの上部と、練習用のスマートフォン</p>
+<p>コードから動かせるアプリを作ることを「ビルド」と呼びます。「実行」を選ぶと、ビルドしたアプリが練習用のスマートフォンで開きます。</p>
+<h3>やってみよう</h3>
+<ol class="steps">
+<li>上部の実行するものの欄で <strong>app</strong> を選びます。</li>
+<li>実行先の欄で、教員と確かめたエミュレーターを選びます。</li>
+<li>メニューの <strong>Run → Run 'app'</strong> を選びます。上部の三角形のRunボタンでも実行できます。</li>
+<li>ビルドと、スマートフォンの起動が終わるまで待ちます。</li>
+<li>スマートフォンの中に、アプリの画面が出たことを確かめます。</li>
+</ol>
+<p>この時点の文字や色は、最初のひな形によって決まります。次の授業で、みんな同じ画面に変えます。</p>
+<div class="result"><strong>こうなればOK</strong>自分が作ったプロジェクトから、アプリを起動できました。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>実行先がない場合は、教員に「エミュレーターが選べません」と伝えてください。赤いエラーが出た場合は、画面下の <strong>Build</strong> にある最初のエラーを見せてください。</p>
+</details>
+<nav class="step-nav" aria-label="手順04の前後"><a href="lesson.html#step-03">← 03 アプリを作る準備をしよう</a><a href="lesson.html#step-05">05 使うファイルを開いてみよう →</a>
+</nav>
+</section>
+<section class="card" id="step-05" aria-labelledby="heading-05">
+<div class="step-meta"><span>STEP 05</span><span>第2回 / 目安 20分</span>
+</div>
+<h2 id="heading-05">使うファイルを開いてみよう</h2>
+<p>これから使うファイルを開きます。ファイルごとに、役割が違います。</p>
+<p class="place"><strong>操作する場所</strong>　Android StudioのProject（ファイル一覧）</p>
+<h3>やってみよう</h3>
+<ol class="steps">
+<li><strong>View → Tool Windows → Project</strong> を選びます。</li>
+<li>ファイル一覧の上部で、表示方法を <strong>Project</strong> にします。</li>
+<li>フォルダーの横の矢印を押して、<code>app → src → main</code> の順に開きます。</li>
+<li>下の表にあるファイルを、1つずつダブルクリックします。</li>
+</ol>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th scope="col">mainからたどる場所</th>
+<th scope="col">何が書いてあるか</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>java/jp/ac/jec/a01firstapp/MainActivity.java</code></td>
+<td>最初の画面を表示する処理。名前がドットでまとめて表示される場合もあります。</td>
+</tr>
+<tr>
+<td><code>res/layout/activity_main.xml</code></td>
+<td>画面に置く部品と、その並べ方。</td>
+</tr>
+<tr>
+<td><code>res/values/strings.xml</code></td>
+<td>画面に出す言葉や、アプリの名前。</td>
+</tr>
+<tr>
+<td><code>res/values/themes.xml</code></td>
+<td>画面全体の見た目。今回は共通の設定を写します。</td>
+</tr>
+<tr>
+<td><code>AndroidManifest.xml</code></td>
+<td>使う画面など、アプリの登録。</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>ファイルの上にあるタブを押すと、開いたファイルを切り替えられます。XMLを開いて絵が表示された場合は、編集欄の <strong>Code</strong> または <strong>Split</strong> を選ぶと文字が見えます。</p>
+<div class="result"><strong>こうなればOK</strong>MainActivity.java、activity_main.xml、strings.xmlを開けます。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>同じ名前がある場合は、<code>app/src/main</code> からの場所を比べてください。ファイルが見つからない場合は、ファイル一覧を教員に見せてください。別の場所に同じファイルを作らずに確認しましょう。</p>
+</details>
+<nav class="step-nav" aria-label="手順05の前後"><a href="lesson.html#step-04">← 04 まずアプリを動かしてみよう</a><a href="lesson.html#step-06">06 画面に文字を置こう →</a>
+</nav>
+</section>
+<section class="card" id="step-06" aria-labelledby="heading-06">
+<div class="step-meta"><span>STEP 06</span><span>第2回 / 目安 50分</span>
+</div>
+<h2 id="heading-06">画面に文字を置こう</h2>
+<p>共通のコードを写して、白い画面のまん中に文字を置きます。</p>
+<p class="place"><strong>操作する場所</strong>　手順05で開いたファイル</p>
+<p>コードは、コンピューターへの指示を書いた文字です。この手順は、教員と1つずつ進めます。まだ全部を覚えなくて大丈夫です。</p>
+<h3>コードを写す方法</h3>
+<ol class="steps">
+<li>下に指定されたファイルをAndroid Studioで開きます。</li>
+<li>教材のコード欄の中だけを選択します。「コードを保存」からテキストを開いて選択してもよいです。</li>
+<li>Windowsは <kbd>Ctrl</kbd> + <kbd>C</kbd>、macOSは <kbd>⌘</kbd> + <kbd>C</kbd> でコピーします。</li>
+<li>Android Studioのファイルの文字がある場所をクリックします。</li>
+<li>Windowsは <kbd>Ctrl</kbd> + <kbd>A</kbd>、macOSは <kbd>⌘</kbd> + <kbd>A</kbd> で、そのファイルの文字を全部選択します。</li>
+<li>Windowsは <kbd>Ctrl</kbd> + <kbd>V</kbd>、macOSは <kbd>⌘</kbd> + <kbd>V</kbd> で貼り付けます。</li>
+<li><strong>File → Save All</strong>（すべて保存）を選びます。</li>
+</ol>
+<div class="note">下の4種類は、いずれも<strong>ファイル全体を置き換える</strong>コードです。ファイル名を確かめてから貼り付けます。途中で赤い線が出ても、4種類をそろえるまで進めます。
+</div>
+<h3>① 表示する言葉を用意する</h3>
+<p><code>app/src/main/res/values/strings.xml</code> の全体を置き換えます。</p>
+<div class="code-label"><span>strings.xml・ファイル全体</span><a href="assets/code/strings.xml.txt" download>コードを保存（テキスト）</a>
+</div>
+<pre tabindex="0"><code>&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;はじめてのアプリ&lt;/string&gt;
+    &lt;string name=&quot;greeting_message&quot;&gt;Hello, Android!&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre>
+<h3>② 画面に文字を置く</h3>
+<p><code>app/src/main/res/layout/activity_main.xml</code> の全体を置き換えます。</p>
+<p>部品を並べる入れ物が <strong>LinearLayout</strong>（リニアレイアウト）、文字を表示する部品が <strong>TextView</strong>（テキストビュー）です。</p>
+<div class="code-label"><span>activity_main.xml・ファイル全体</span><a href="assets/code/activity_main.xml.txt" download>コードを保存（テキスト）</a>
+</div>
+<pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;
+    android:background=&quot;#FFFFFF&quot;
+    android:fitsSystemWindows=&quot;true&quot;&gt;
+
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:orientation=&quot;vertical&quot;
+        android:gravity=&quot;center&quot;
+        android:padding=&quot;24dp&quot;&gt;
+
+        &lt;TextView
+            android:id=&quot;@+id/greetingText&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;@string/greeting_message&quot;
+            android:textSize=&quot;24sp&quot;
+            android:textColor=&quot;#212121&quot;
+            android:gravity=&quot;center&quot; /&gt;
+
+    &lt;/LinearLayout&gt;
+&lt;/LinearLayout&gt;
+</code></pre>
+<h3>③ この画面を表示する</h3>
+<p><code>app/src/main/java/jp/ac/jec/a01firstapp/MainActivity.java</code> の全体を置き換えます。</p>
+<p><code>setContentView(R.layout.activity_main);</code> が、②の画面を表示する指示です。</p>
+<div class="code-label"><span>MainActivity.java・ファイル全体</span><a href="assets/code/MainActivity.java.txt" download>コードを保存（テキスト）</a>
+</div>
+<pre tabindex="0"><code>package jp.ac.jec.a01firstapp;
+
+import android.app.Activity;
+import android.os.Bundle;
+
+public class MainActivity extends Activity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+    }
+}
+</code></pre>
+<h3>④ 画面の見た目をそろえる</h3>
+<p><code>app/src/main/res/values/themes.xml</code> の全体を置き換えます。</p>
+<div class="code-label"><span>themes.xml・ファイル全体</span><a href="assets/code/themes.xml.txt" download>コードを保存（テキスト）</a>
+</div>
+<pre tabindex="0"><code>&lt;resources&gt;
+    &lt;style name=&quot;Theme.A01FirstApp&quot; parent=&quot;android:style/Theme.Material.Light.NoActionBar&quot;&gt;
+        &lt;item name=&quot;android:forceDarkAllowed&quot;&gt;false&lt;/item&gt;
+        &lt;item name=&quot;android:fontFamily&quot;&gt;sans&lt;/item&gt;
+        &lt;item name=&quot;android:windowLightStatusBar&quot;&gt;true&lt;/item&gt;
+        &lt;item name=&quot;android:statusBarColor&quot;&gt;#FFFFFF&lt;/item&gt;
+        &lt;item name=&quot;android:navigationBarColor&quot;&gt;#000000&lt;/item&gt;
+        &lt;item name=&quot;android:windowLightNavigationBar&quot;&gt;false&lt;/item&gt;
+        &lt;item name=&quot;android:windowActionModeOverlay&quot;&gt;true&lt;/item&gt;
+        &lt;item name=&quot;android:windowBackground&quot;&gt;#FFFFFF&lt;/item&gt;
+    &lt;/style&gt;
+&lt;/resources&gt;
+</code></pre>
+<ol class="steps">
+<li><code>app/src/main/res/values-night</code> があるか確かめます。</li>
+<li>その中に <code>themes.xml</code> がある場合は、全体を④と同じコードに置き換えます。ない場合は、この操作は不要です。</li>
+<li><strong>File → Save All</strong> を選びます。</li>
+</ol>
+<p>「night」の設定も同じにすることで、スマートフォンが暗い色の設定でも、今回の画面は白く表示します。</p>
+<h3>⑤ 教員と登録を確かめる</h3>
+<p><code>AndroidManifest.xml</code> を開きます。次の3つを探します。<strong>この表は貼り付けるコードではありません。</strong> 違う場合は教員と確認します。</p>
+<div class="table-wrap">
+<table>
+<thead>
+<tr>
+<th scope="col">場所</th>
+<th scope="col">確かめる内容</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>application</code> の中</td>
+<td><code>android:label="@string/app_name"</code></td>
+</tr>
+<tr>
+<td><code>application</code> の中</td>
+<td><code>android:theme="@style/Theme.A01FirstApp"</code></td>
+</tr>
+<tr>
+<td><code>activity</code> の中</td>
+<td><code>android:name=".MainActivity"</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="result"><strong>こうなればOK</strong>4種類のコードを保存しました。画面の言葉は、まだ Hello, Android! です。次の手順で動かします。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>貼り付け先を間違えたら、すぐに <strong>Edit → Undo</strong>（元に戻す）を選びます。4種類を保存した後も赤い線が残る場合は、ファイル名と赤い線を教員に見せてください。先頭の <code>package</code> が違う場合も教員と確認します。</p>
+</details>
+<nav class="step-nav" aria-label="手順06の前後"><a href="lesson.html#step-05">← 05 使うファイルを開いてみよう</a><a href="lesson.html#step-07">07 英語のあいさつを確かめよう →</a>
+</nav>
+</section>
+<section class="card" id="step-07" aria-labelledby="heading-07">
+<div class="step-meta"><span>STEP 07</span><span>第2回 / 目安 20分</span>
+</div>
+<h2 id="heading-07">英語のあいさつを確かめよう</h2>
+<p>コードを写した結果を、アプリの画面で確かめます。</p>
+<p class="place"><strong>操作する場所</strong>　Android Studioと、練習用のスマートフォン</p>
+<h3>やってみよう</h3>
+<ol class="steps">
+<li><strong>File → Save All</strong> を選びます。</li>
+<li><strong>Run → Run 'app'</strong> を選びます。</li>
+<li>新しくビルドしたアプリが表示されるまで待ちます。</li>
+<li>白い背景のまん中に <strong>Hello, Android!</strong> と出ているか確かめます。</li>
+</ol>
+<figure class="figure">
+<div class="phone" role="img" aria-label="説明図。白い画面の中央にHello, Android!と表示。">
+<div class="phone-top" aria-hidden="true">システムの表示領域
+</div>
+<div class="phone-text" aria-hidden="true">Hello, Android!
+</div>
+<div class="phone-bottom" aria-hidden="true">システムの操作領域
+</div>
+</div>
+<figcaption class="caption">完成イメージ（説明図）。実際のアプリの写真ではありません。</figcaption>
+</figure>
+<div class="result"><strong>こうなればOK</strong>英語のあいさつが表示されます。文字の上下には余白があります。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>アプリがすぐ閉じる場合や、上にアプリのタイトルが出る場合は、<a href="#step-06">手順06の③と④</a>を教員と比べてください。画面の文字が端に寄る場合は、②のコードを比べます。</p>
+</details>
+<nav class="step-nav" aria-label="手順07の前後"><a href="lesson.html#step-06">← 06 画面に文字を置こう</a><a href="lesson.html#step-08">08 表示する言葉を探そう →</a>
+</nav>
+</section>
+<section class="card" id="step-08" aria-labelledby="heading-08">
+<div class="step-meta"><span>STEP 08</span><span>第3回 / 目安 20分</span>
+</div>
+<h2 id="heading-08">表示する言葉を探そう</h2>
+<p>画面と、表示する言葉が、どこでつながっているか見つけます。</p>
+<p class="place"><strong>操作する場所</strong>　activity_main.xml と strings.xml</p>
+<h3>やってみよう</h3>
+<ol class="steps">
+<li><a href="#step-05">手順05の場所</a>から <code>activity_main.xml</code> を開きます。</li>
+<li><code>android:text="@string/greeting_message"</code> を探します。</li>
+<li><code>strings.xml</code> を開きます。</li>
+<li><code>name="greeting_message"</code> を探します。</li>
+<li>その右にある <code>Hello, Android!</code> を指で示します。</li>
+</ol>
+<p><code>greeting_message</code> は、表示する言葉につけた名前です。画面は、この名前を使って、表示する言葉を取り出します。</p>
+<pre tabindex="0"><code>画面の指定：@string/greeting_message
+                    ↓
+言葉の名前：greeting_message
+表示する言葉：Hello, Android!</code></pre>
+<p class="caption">上はつながりを表す説明図です。コードとして貼り付けません。</p>
+<div class="result"><strong>こうなればOK</strong>表示する言葉が書かれている場所を指で示せます。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>見つからない場合は、<a href="#step-06">手順06の①と②</a>を見ます。画面に出る言葉と、言葉につけた名前は別です。この手順では、まだ何も変えません。</p>
+</details>
+<nav class="step-nav" aria-label="手順08の前後"><a href="lesson.html#step-07">← 07 英語のあいさつを確かめよう</a><a href="lesson.html#step-09">09 日本語のあいさつに変えよう →</a>
+</nav>
+</section>
+<section class="card" id="step-09" aria-labelledby="heading-09">
+<div class="step-meta"><span>STEP 09</span><span>第3回 / 目安 50分</span>
+</div>
+<h2 id="heading-09">日本語のあいさつに変えよう</h2>
+<p>画面に出る言葉を、日本語に変えます。</p>
+<p class="place"><strong>操作する場所</strong>　app/src/main/res/values/strings.xml</p>
+<h3>やってみよう</h3>
+<ol class="steps">
+<li><a href="#step-05">手順05の場所</a>から <code>strings.xml</code> を開きます。</li>
+<li><code>Hello, Android!</code> を探します。</li>
+<li>その言葉だけを <code>こんにちは、Android！</code> に書き換えます。</li>
+<li><strong>File → Save All</strong> を選びます。</li>
+<li><strong>Run → Run 'app'</strong> を選びます。</li>
+<li>アプリが表示されるまで待ちます。</li>
+<li>画面の言葉を読みます。</li>
+</ol>
+<h3>ここを書き換えます</h3>
+<p>変更前の1行：</p>
+<pre tabindex="0"><code>&lt;string name=&quot;greeting_message&quot;&gt;Hello, Android!&lt;/string&gt;</code></pre>
+<p>変更後の1行：</p>
+<pre tabindex="0"><code>&lt;string name=&quot;greeting_message&quot;&gt;こんにちは、Android！&lt;/string&gt;</code></pre>
+<p><code>&lt;string name="greeting_message"&gt;</code> と <code>&lt;/string&gt;</code> の記号は残します。<code>greeting_message</code> という名前も残します。</p>
+<h3>変更後のファイル全体</h3>
+<pre tabindex="0"><code>&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;はじめてのアプリ&lt;/string&gt;
+    &lt;string name=&quot;greeting_message&quot;&gt;こんにちは、Android！&lt;/string&gt;
+&lt;/resources&gt;</code></pre>
+<div class="pair">
+<div class="sample"><small>変更前（説明図）</small>Hello, Android!
+</div>
+<div class="sample"><small>変更後（説明図）</small>こんにちは、Android！
+</div>
+</div>
+<p>日本語の最後は全角の「！」です。Androidの前には日本語の「、」を入れます。</p>
+<div class="result"><strong>こうなればOK</strong>白い画面に「こんにちは、Android！」と表示されます。
+</div>
+<details open>
+<summary>うまくいかないとき</summary>
+<p>まだ英語が出る場合は、保存後にもう一度Runを選び、完了まで待ちます。赤い線が出た場合は、上の「ファイル全体」と前後の記号を比べます。直せない場合は、開いているファイルを教員に見せてください。</p>
+</details>
+<nav class="step-nav" aria-label="手順09の前後"><a href="lesson.html#step-08">← 08 表示する言葉を探そう</a><a href="exercise.html#step-10">10 自分で少し変えてみよう →</a>
+</nav>
+</section>
+<footer class="footer">A01 / はじめてのアプリ<br>この教材はフォルダーごと保存すると、インターネットにつながずに読めます。印刷はブラウザーの「印刷」を使います。アプリ作成の初回準備にはインターネットが必要です。
+</footer>
+</main>
+</div>
+</body>
+</html>

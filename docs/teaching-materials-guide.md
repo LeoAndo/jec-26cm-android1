@@ -86,7 +86,7 @@ Stitchから取得したコードやデザイン定義は、採用済みのJava�
 
 ## 6. HTMLファイルの構成
 
-課題ごとに次の構成を基本とする。以下は作成予定のファイルであり、リンク先の完成を示すものではない。
+課題ごとに次の構成を基本とする。A01では[HTML教材の初版](../assignments/A01-first-app/materials/lesson.html)を作成済み。配布前の検証状況は各課題のplan.mdで管理する。
 
 ```text
 materials/

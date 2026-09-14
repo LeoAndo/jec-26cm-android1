@@ -1,10 +1,10 @@
 # A01：はじめてのアプリ — 要件・アプリ仕様案
 
-> 状態：内容確認用の仕様案。アプリのコードと操作手順の教材は未作成。
+> 状態：仕様案とHTML教材の初版を作成済み。Panda 2での通し確認前のため、教員確認用。
 > 対応授業：第1週・第1〜4回（90分×4コマ＝6時間）。
 > 上位方針：[授業計画](../../docs/course-plan.md)。
 
-学生向け教材はHTML形式で作成する。[教材作成方針](../../docs/teaching-materials-guide.md)と[A01教材の章立て](materials/plan.md)に従い、難しい言葉をできるだけ使わず、1つずつ操作と結果を確認する構成にする。
+学生向け教材はHTML形式で作成する。[操作手順](materials/lesson.html)・[練習課題](materials/exercise.html)・[完成確認と提出](materials/checklist.html)の初版を参照。[教材作成方針](../../docs/teaching-materials-guide.md)と[A01教材の章立て](materials/plan.md)に従い、難しい言葉をできるだけ使わず、1つずつ操作と結果を確認する構成にする。
 
 ## 1. アプリの目的
 
@@ -95,6 +95,7 @@ Javaの文法、変数、条件分岐の事前知識は求めない。MainActivi
 | --- | --- |
 | Android Studio | Panda 2 \| 2025.3.2 |
 | プロジェクト名 | A01FirstApp |
+| 作成テンプレート・Minimum SDK | Empty Views Activity・API 24（教材初版の設定案。Panda 2で通し確認する）。 |
 | パッケージ名・applicationId | jp.ac.jec.a01firstapp（教材用の統一案） |
 | 言語・画面 | Java・View SystemのXML。 |
 | ライブラリ | 新規プロジェクト作成時の初期依存関係のみ。追加しない。 |
@@ -144,7 +145,7 @@ Javaの文法、変数、条件分岐の事前知識は求めない。MainActivi
 
 提出物は、学生が作成したAndroidプロジェクト一式と、必須課題の完成画面のスクリーンショット1枚を基本案とする。プロジェクトにはソース・リソース・Manifest・Gradleのビルド設定とWrapperを含める。ビルド生成物、端末固有のSDKパスを持つlocal.propertiesは提出対象から除く。提出先とファイル名の規則は授業の共通ルールとして別途指定する。
 
-## 8. 教材・コード作成前に検証する事項
+## 8. 学生配布前に検証する事項
 
 - 指定Android Studioでのテンプレート名・選択項目と、Java／XMLで作成できること。
 - SDK・JDK・Gradle・Android Gradle Plugin・初期依存関係の固定値、エミュレーターの機種とAPIレベル。
@@ -153,4 +154,6 @@ Javaの文法、変数、条件分岐の事前知識は求めない。MainActivi
 
 これらは教員側の環境検証で確定する。現時点では、指定環境でのビルド・実行確認を済ませたとは扱わない。
 
-仕様確認と環境検証の後、このフォルダに操作手順の教材（lesson.html）、課題文（exercise.html）、動作確認票（checklist.html）、開始用コード、教員用の完成例を順次追加する。現在は仕様案と教材の章立てを整理しており、アプリコードと学生配布用HTMLは未作成。
+HTML3ページと貼り付け用のJava・XMLコードを作成済み。コード例では、標準のActivityとライトテーマを使い、外側のLinearLayoutでシステムバーの余白、内側のLinearLayoutで24dpの余白を扱う。初期依存関係は変更しない。教材内の完成画面は説明図であり、実行画像ではない。
+
+完全なGradleプロジェクトと指定環境での実行画像は今後追加する。検証の実施内容と未実施項目は[教材の制作・検証記録](materials/plan.md)に記録する。
