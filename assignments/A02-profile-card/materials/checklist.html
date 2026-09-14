@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A02 | できたか確かめよう</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><a class="skip" href="#main">本文へ進む</a><header><p class="eyebrow">ANDROID 1 · A02 · 自己紹介カード</p><nav aria-label="教材の目次"><a href="lesson-layout.html">第2週 画面を作る</a><a href="lesson-events.html">第3週 ボタンで変える</a><a href="lesson-input.html">第4週 名前を入力する</a><a href="exercise.html">第16回 リセットを作る</a><a href="checklist.html" aria-current="page">完成確認・提出</a></nav></header>
+<main id="main"><p class="draft">教員確認用の原稿です。授業で使う前に、教員の確認を受けます。</p><h1>できたか確かめよう</h1><p class="lead">各週の終わりに操作して確認します。チェックはこのページを閉じると保持されないことがあります。</p><section id="checks"><h2>完成条件 C01〜C12</h2><label class="check"><input type="checkbox" id="C01"><span><strong>C01　第2週</strong><br>実行して、画像・名前の横並びと、あいさつ・ボタンを確認する。</span></label><label class="check"><input type="checkbox" id="C02"><span><strong>C02　第2週</strong><br>文字サイズ・色・余白を各1か所変え、予想と比べる。第8回の共通値へ戻す。</span></label><label class="check"><input type="checkbox" id="C03"><span><strong>C03　第3週</strong><br>あいさつを2回押す。「こんにちは！1年生のサクラです。」が出る。</span></label><label class="check"><input type="checkbox" id="C04"><span><strong>C04　第3週</strong><br>学年を2に変えて予想する。「2年生」と表示できたら1へ戻す。</span></label><label class="check"><input type="checkbox" id="C05"><span><strong>C05　第4週</strong><br>リンを反映すると名前はリン、あいさつは初期文。あいさつを押すと「こんにちは！1年生のリンです。」。</span></label><label class="check"><input type="checkbox" id="C06"><span><strong>C06　第4週</strong><br>入力だけミナに変えてあいさつする。リンのまま。反映すると名前はミナ、あいさつは初期文。次のあいさつはミナ。</span></label><label class="check"><input type="checkbox" id="C07"><span><strong>C07　第4週</strong><br>空欄、半角スペース3個、全角スペース2個、半角・全角1個ずつで反映する。毎回「名前を入力してください」。直前のカードの名前とあいさつは残る。</span></label><label class="check"><input type="checkbox" id="C08"><span><strong>C08　第4週</strong><br>前後に半角空白を付けた「 リン 」と、全角空白を付けた「　リン　」を反映する。名前はリン、エラーなし。入力欄の文字はそのまま。</span></label><label class="check"><input type="checkbox" id="C09"><span><strong>C09　第4週</strong><br>「アナ マリア」と「アナ　マリア」を反映する。どちらも間に半角スペースがある「アナ マリア」。</span></label><label class="check"><input type="checkbox" id="C10"><span><strong>C10　第4週</strong><br>「アレクサンドラマリアサクラアレクサンドラマリアサクラ」を反映してあいさつする。名前と文の全文を読める。キーボード表示中もスクロールして入力欄と各ボタンに届く。</span></label><label class="check"><input type="checkbox" id="C11"><span><strong>C11　第4週</strong><br>名前反映後、空欄エラー後、それぞれリセットする。続けて2回押す。サクラ・初期文・空の入力・エラーなしに戻る。その後ミナを反映してあいさつできる。</span></label><label class="check"><input type="checkbox" id="C12"><span><strong>C12　第4週</strong><br>名前変更後、アプリを強制停止して新しく起動する。サクラ・初期文・空の入力・エラーなしで始まる。</span></label></section><figure><img src="assets/greeting.png" alt="リンを反映して、あいさつした状態。" width="360"><figcaption>リンを反映して、あいさつした状態。（検証用エミュレーターの実行画像）</figcaption></figure><figure><img src="assets/error.png" alt="空欄エラー。名前とあいさつは直前のリンのまま。" width="360"><figcaption>空欄エラー。名前とあいさつは直前のリンのまま。（検証用エミュレーターの実行画像）</figcaption></figure><section><h2>再起動を確かめるとき</h2><p>ホームへ戻るだけでは初期化されません。C12では教員と一緒に、端末のアプリ情報から「自己紹介カード」を強制停止します。その後ランチャーから起動します。アプリ情報の位置は端末によって異なります。分からないときは教員に画面を見せてください。</p></section><section id="submit"><h2>提出しよう</h2><p>提出先・締切・ファイル名は、教員の授業案内で確認してから送信します。</p><h3>提出するもの</h3><p><strong>完成したアプリのAPKファイル1つのみ</strong>です。</p><h3>① APKを作る</h3>
+<p>APK（エーピーケー）は、Androidにアプリを入れるためのファイルです。この授業では、初期設定のdebug（開発用）を使います。</p>
+<ol class="steps">
+<li>必須課題の完成状態でアプリを実行し、完成条件を確かめます。</li>
+<li>Android Studioの上のメニューで <strong>Build</strong> を開きます。</li>
+<li><strong>Generate App Bundles or APKs</strong> を選びます。</li>
+<li><strong>Generate APKs</strong> を選びます。</li>
+<li>APKの作成が成功した通知を待ちます。</li>
+</ol>
+<p>コードを直したときは、このAPK作成の操作をもう一度行ってから提出します。</p>
+<h3>② APKを取り出す</h3>
+<ol class="steps">
+<li>Finderで、作業用の <code>A02ProfileCard</code> フォルダーを開きます。</li>
+<li><code>app</code> → <code>build</code> → <code>outputs</code> → <code>apk</code> → <code>debug</code> の順に開きます。</li>
+<li><code>app-debug.apk</code> を選びます。</li>
+<li><kbd>⌘</kbd> + <kbd>C</kbd> でコピーします。</li>
+<li>提出用の保存場所を開き、<kbd>⌘</kbd> + <kbd>V</kbd> で貼り付けます。</li>
+<li>コピーしたAPKに、教員が案内したファイル名を付けます。末尾の <code>.apk</code> は残します。</li>
+</ol>
+<p>作業用プロジェクトは、自分のパソコンに残しておきます。</p>
+<h3>③ APKを提出する</h3>
+<ol class="steps">
+<li>教員が案内した提出先へ、APKファイル1つを送ります。</li>
+<li>提出先の画面で、送ったファイルの名前と末尾の <code>.apk</code> を確かめます。</li>
+<li>送信が完了したことを確かめます。</li>
+</ol>
+<p class="result">APKファイル1つの送信が完了すれば、提出は完了です。</p><details><summary>APKが見つからない・作成に失敗したとき</summary><p>APKの作成が成功したかと、開いたプロジェクトの保存場所を教員と確かめます。Buildにエラーが出た場合は、最初のエラーを見せてください。送信に失敗した場合は、提出先の画面を教員に見せてください。</p></details><h3>④ 今日の振り返り（授業内）</h3><p>授業中に、名前反映・空欄・リセットの操作を教員に見せます。次の内容も授業内で振り返ります。振り返りの提出はありません。</p><ul><li>自分で変えた場所はどこですか。</li><li>空欄のときに動く処理はどこですか。</li><li>リセットで戻す4つの対象は何ですか。</li></ul><p>短い言葉や、コードを指して答えても構いません。</p></section></main>
+<footer><nav aria-label="ページの移動"><a href="lesson-layout.html">第2週 画面を作る</a><a href="lesson-events.html">第3週 ボタンで変える</a><a href="lesson-input.html">第4週 名前を入力する</a><a href="exercise.html">第16回 リセットを作る</a><a href="checklist.html" aria-current="page">完成確認・提出</a></nav><p>A02 自己紹介カード · Java / XML · 1コマ90分。速さで評価しません。</p><a href="#main">ページの先頭へ</a></footer></body></html>

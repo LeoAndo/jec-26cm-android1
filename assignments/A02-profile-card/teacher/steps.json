@@ -1,0 +1,222 @@
+[
+  {
+    "id": 5,
+    "title": "名前とあいさつを置こう",
+    "goal": "文字を表示する部品を2つ追加します。",
+    "concept": "TextViewは文字の部品です。layout_widthは横、layout_heightは縦の大きさです。match_parentは親の幅、wrap_contentは中身に必要な大きさです。dpは余白や部品の大きさ、spは文字の大きさに使います。",
+    "ok": "見出しの下に「サクラ」「よろしくお願いします。」が出ます。",
+    "trouble": "文字が出ないときはandroid:textとstrings.xmlの名前を比べます。赤い文字は、綴りと閉じタグを確認します。",
+    "edits": [
+      {
+        "file": "app/src/main/res/values/strings.xml",
+        "before": "</resources>",
+        "after": "    <string name=\"default_name\">サクラ</string>\n    <string name=\"default_greeting\">よろしくお願いします。</string>\n</resources>"
+      },
+      {
+        "file": "app/src/main/res/layout/activity_main.xml",
+        "before": "            <!-- カードの部品はここに追加します。 -->",
+        "after": "            <TextView\n                android:id=\"@+id/nameTextView\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginBottom=\"24dp\"\n                android:text=\"@string/default_name\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"24sp\"\n                android:textStyle=\"bold\" />\n\n            <TextView\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginBottom=\"16dp\"\n                android:text=\"@string/default_greeting\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"18sp\" />"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "title": "横向きの枠を作ろう",
+    "goal": "名前を横向きのLinearLayoutの中へ移します。",
+    "concept": "orientation=\"vertical\"は縦、horizontalは横です。枠の中に枠を置くことを入れ子と呼びます。paddingは枠の内側、layout_marginBottomは枠の外側の下の余白です。gravityは枠の中で部品をそろえる位置です。",
+    "ok": "見た目は大きく変わりません。名前を囲むprofileRowのorientationがhorizontalです。",
+    "trouble": "タグの数が合わないときは、profileRowの開始と終了のLinearLayoutを指で対応させます。外側のcontentとmainは残します。",
+    "edits": [
+      {
+        "file": "app/src/main/res/layout/activity_main.xml",
+        "before": "            <TextView\n                android:id=\"@+id/nameTextView\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginBottom=\"24dp\"\n                android:text=\"@string/default_name\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"24sp\"\n                android:textStyle=\"bold\" />",
+        "after": "            <LinearLayout\n                android:id=\"@+id/profileRow\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginBottom=\"24dp\"\n                android:gravity=\"center_vertical\"\n                android:orientation=\"horizontal\">\n\n                <TextView\n                    android:id=\"@+id/nameTextView\"\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:text=\"@string/default_name\"\n                    android:textColor=\"@color/card_text\"\n                    android:textSize=\"24sp\"\n                    android:textStyle=\"bold\" />\n\n            </LinearLayout>"
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "title": "画像とボタンを置こう",
+    "goal": "同梱した画像と、押せるボタンを置きます。",
+    "concept": "ImageViewは画像、Buttonはボタンです。drawableに画像、strings.xmlに言葉、colors.xmlに色を置きます。@はその名前の資源を使う印です。名前の幅を0dp、layout_weightを1にすると、画像の右に残った横幅を名前に使えます。",
+    "ok": "画像と名前が横に並び、下にあいさつとボタンが出ます。押しても文はまだ変わりません。",
+    "trouble": "画像が出ないときはdrawable/profile_avatar.pngとandroid:srcを確認します。ボタンが反応しないのは、この段階では正しい状態です。",
+    "edits": [
+      {
+        "file": "app/src/main/res/values/strings.xml",
+        "before": "</resources>",
+        "after": "    <string name=\"profile_description\">プロフィールのイラスト</string>\n    <string name=\"greet_button\">あいさつする</string>\n</resources>"
+      },
+      {
+        "file": "app/src/main/res/layout/activity_main.xml",
+        "before": "                <TextView\n                    android:id=\"@+id/nameTextView\"\n                    android:layout_width=\"match_parent\"\n                    android:layout_height=\"wrap_content\"\n                    android:text=\"@string/default_name\"\n                    android:textColor=\"@color/card_text\"\n                    android:textSize=\"24sp\"\n                    android:textStyle=\"bold\" />",
+        "after": "                <ImageView\n                    android:id=\"@+id/profileImageView\"\n                    android:layout_width=\"48dp\"\n                    android:layout_height=\"48dp\"\n                    android:layout_marginEnd=\"12dp\"\n                    android:contentDescription=\"@string/profile_description\"\n                    android:src=\"@drawable/profile_avatar\" />\n\n                <TextView\n                    android:id=\"@+id/nameTextView\"\n                    android:layout_width=\"0dp\"\n                    android:layout_weight=\"1\"\n                    android:layout_height=\"wrap_content\"\n                    android:text=\"@string/default_name\"\n                    android:textColor=\"@color/card_text\"\n                    android:textSize=\"24sp\"\n                    android:textStyle=\"bold\" />"
+      },
+      {
+        "file": "app/src/main/res/layout/activity_main.xml",
+        "before": "            <TextView\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginBottom=\"16dp\"\n                android:text=\"@string/default_greeting\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"18sp\" />",
+        "after": "            <TextView\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginBottom=\"16dp\"\n                android:text=\"@string/default_greeting\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"18sp\" />\n\n            <Button\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:minHeight=\"48dp\"\n                android:text=\"@string/greet_button\" />"
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "title": "変数で文を作ろう",
+    "goal": "名前と学年を変数に入れて、1つの文を作ります。",
+    "concept": "変数は値に付ける名前です。Stringは文字列、intは整数です。=は右の値を左の変数へ入れます。文の最後は半角の;です。+で文字列と数をつなぎます。この時点では文を作るだけです。",
+    "ok": "アプリを実行できます。画面はまだ初期の文です。messageの予想は「こんにちは！1年生のサクラです。」です。",
+    "trouble": "エラーが出たら半角の引用符\"と;を見ます。全角の記号は使いません。",
+    "edits": [
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "        // ここから授業の処理を追加します。",
+        "after": "        // ここから授業の処理を追加します。\n        String name = \"サクラ\";\n        int grade = 1;\n        String message = \"こんにちは！\" + grade + \"年生の\" + name + \"です。\";"
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "title": "画面の部品を見つけよう",
+    "goal": "XMLで名前を付けた部品をJavaから見つけます。",
+    "concept": "idは部品を区別する名前です。@+idはXMLで名前を用意します。R.idはJavaからその名前を使います。findViewByIdは、そのidの部品を探します。setContentViewで画面を用意した後に探します。importは部品のクラスを使う宣言です。",
+    "ok": "実行できます。まだクリック処理がないので、ボタンを押しても表示は変わりません。",
+    "trouble": "R.idの後ろが赤いときはXMLのidと大文字・小文字まで比べます。setContentViewと、mainを使う余白処理を消さないでください。",
+    "edits": [
+      {
+        "file": "app/src/main/res/layout/activity_main.xml",
+        "before": "            <TextView\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginBottom=\"16dp\"\n                android:text=\"@string/default_greeting\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"18sp\" />",
+        "after": "            <TextView\n                android:id=\"@+id/greetingTextView\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginBottom=\"16dp\"\n                android:text=\"@string/default_greeting\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"18sp\" />"
+      },
+      {
+        "file": "app/src/main/res/layout/activity_main.xml",
+        "before": "            <Button\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:minHeight=\"48dp\"\n                android:text=\"@string/greet_button\" />",
+        "after": "            <Button\n                android:id=\"@+id/greetButton\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:minHeight=\"48dp\"\n                android:text=\"@string/greet_button\" />"
+      },
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "import android.os.Bundle;",
+        "after": "import android.os.Bundle;\nimport android.widget.Button;\nimport android.widget.TextView;"
+      },
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "        String name = \"サクラ\";\n        int grade = 1;\n        String message = \"こんにちは！\" + grade + \"年生の\" + name + \"です。\";",
+        "after": "        String name = \"サクラ\";\n        int grade = 1;\n        String message = \"こんにちは！\" + grade + \"年生の\" + name + \"です。\";\n\n        TextView greetingTextView = findViewById(R.id.greetingTextView);\n        Button greetButton = findViewById(R.id.greetButton);"
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "title": "ボタンであいさつしよう",
+    "goal": "ボタンを押したときに文を表示します。",
+    "concept": "setOnClickListenerはクリック時の処理を登録します。v -> { と }); はひな形です。波括弧の中が押したときの処理です。setTextは表示する文字を変えます。messageは変更しない変数なので、このひな形から使えます。",
+    "ok": "2回押しても「こんにちは！1年生のサクラです。」と表示します。",
+    "trouble": "起動直後に変わるならsetTextがクリックの波括弧の中にあるか確認します。強制終了するならidと部品の種類を確認し、Logcatの赤い行を教員に見せます。",
+    "edits": [
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "        TextView greetingTextView = findViewById(R.id.greetingTextView);\n        Button greetButton = findViewById(R.id.greetButton);",
+        "after": "        TextView greetingTextView = findViewById(R.id.greetingTextView);\n        Button greetButton = findViewById(R.id.greetButton);\n\n        greetButton.setOnClickListener(v -> {\n            greetingTextView.setText(message);\n        });"
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "title": "名前を入力しよう",
+    "goal": "名前入力欄と反映ボタンを置き、入力を文字列として受け取ります。",
+    "concept": "EditTextは入力の部品です。getTextで入力を取り出し、toStringでStringにします。replaceの左の引用符内は全角スペース1個、右は半角スペース1個です。全角を半角にそろえます。trimは前後の半角空白を除きます。間の空白は残します。",
+    "ok": "名前を入力できます。「名前を反映」を押しても、この段階ではカードは変わりません。入力「　リン　」はnewNameが「リン」になると予想します。",
+    "trouble": "キーボードでボタンが隠れたら、画面を上へスワイプします。replaceの引用符は半角の単引用符です。入力取得をクリック処理の外へ置かないでください。",
+    "edits": [
+      {
+        "file": "app/src/main/res/values/strings.xml",
+        "before": "</resources>",
+        "after": "    <string name=\"name_label\">名前</string>\n    <string name=\"name_hint\">例：サクラ</string>\n    <string name=\"apply_name_button\">名前を反映</string>\n    <string name=\"name_required\">名前を入力してください</string>\n</resources>"
+      },
+      {
+        "file": "app/src/main/res/layout/activity_main.xml",
+        "before": "            <Button\n                android:id=\"@+id/greetButton\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:minHeight=\"48dp\"\n                android:text=\"@string/greet_button\" />",
+        "after": "            <Button\n                android:id=\"@+id/greetButton\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:minHeight=\"48dp\"\n                android:text=\"@string/greet_button\" />\n\n            <TextView\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"24dp\"\n                android:labelFor=\"@id/nameEditText\"\n                android:text=\"@string/name_label\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"16sp\" />\n\n            <EditText\n                android:id=\"@+id/nameEditText\"\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:minHeight=\"48dp\"\n                android:hint=\"@string/name_hint\"\n                android:inputType=\"textPersonName\"\n                android:singleLine=\"true\"\n                android:textColor=\"@color/card_text\"\n                android:textSize=\"18sp\" />\n\n            <LinearLayout\n                android:layout_width=\"match_parent\"\n                android:layout_height=\"wrap_content\"\n                android:layout_marginTop=\"48dp\"\n                android:orientation=\"horizontal\">\n\n                <Button\n                    android:id=\"@+id/applyNameButton\"\n                    android:layout_width=\"0dp\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_weight=\"1\"\n                    android:minHeight=\"48dp\"\n                    android:text=\"@string/apply_name_button\" />\n\n            </LinearLayout>"
+      },
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "import android.widget.Button;",
+        "after": "import android.widget.Button;\nimport android.widget.EditText;"
+      },
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "        greetButton.setOnClickListener(v -> {\n            greetingTextView.setText(message);\n        });",
+        "after": "        greetButton.setOnClickListener(v -> {\n            greetingTextView.setText(message);\n        });\n\n        EditText nameEditText = findViewById(R.id.nameEditText);\n        Button applyNameButton = findViewById(R.id.applyNameButton);\n\n        applyNameButton.setOnClickListener(v -> {\n            String input = nameEditText.getText().toString();\n            String normalized = input.replace('　', ' ');\n            String newName = normalized.trim();\n        });"
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "title": "空欄を確かめよう",
+    "goal": "空欄のときだけ入力を促す案内を出します。",
+    "concept": "booleanはtrue（はい）かfalse（いいえ）を入れます。isEmptyは空の文字列か調べます。ifの条件がtrueなら前半、falseならelseを動かします。setErrorで案内を出し、nullで消します。requestFocusは入力欄を選びます。",
+    "ok": "空欄と空白だけの入力で「名前を入力してください」が出ます。「リン」を反映するとエラーが消えます。カードの名前はまだサクラです。",
+    "trouble": "エラー文が見えないときは入力欄をタップします。半角と全角の両方の空白だけで確かめます。",
+    "edits": [
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "            String newName = normalized.trim();",
+        "after": "            String newName = normalized.trim();\n            boolean isBlank = newName.isEmpty();\n            if (isBlank) {\n                nameEditText.setError(getString(R.string.name_required));\n                nameEditText.requestFocus();\n            } else {\n                nameEditText.setError(null);\n            }"
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "title": "入力した名前をカードに出そう",
+    "goal": "有効な入力だけを表示し、反映した名前であいさつします。",
+    "concept": "名前を反映する処理と、あいさつを変える処理は別です。あいさつボタンでは、入力欄ではなくカードのnameTextViewを読みます。setTextにR.stringの値を渡すと、strings.xmlの言葉を表示します。",
+    "ok": "リンを反映してあいさつします。入力だけミナに変えても、あいさつはリンです。反映してから押すとミナです。空欄エラーではカードの表示を変えません。",
+    "trouble": "名前が古いときは、String nameの行があいさつのクリック処理の中にあるか見ます。if側へ名前更新を書いていないか確認します。",
+    "edits": [
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "        String name = \"サクラ\";\n        int grade = 1;\n        String message = \"こんにちは！\" + grade + \"年生の\" + name + \"です。\";\n\n",
+        "after": ""
+      },
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "        TextView greetingTextView = findViewById(R.id.greetingTextView);\n        Button greetButton = findViewById(R.id.greetButton);",
+        "after": "        TextView nameTextView = findViewById(R.id.nameTextView);\n        TextView greetingTextView = findViewById(R.id.greetingTextView);\n        Button greetButton = findViewById(R.id.greetButton);"
+      },
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "        greetButton.setOnClickListener(v -> {\n            greetingTextView.setText(message);\n        });",
+        "after": "        greetButton.setOnClickListener(v -> {\n            String name = nameTextView.getText().toString();\n            int grade = 1;\n            String message = \"こんにちは！\" + grade + \"年生の\" + name + \"です。\";\n            greetingTextView.setText(message);\n        });"
+      },
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "                nameEditText.setError(null);",
+        "after": "                nameEditText.setError(null);\n                nameTextView.setText(newName);\n                greetingTextView.setText(R.string.default_greeting);"
+      }
+    ]
+  },
+  {
+    "id": 16,
+    "title": "リセットを自力で追加しよう",
+    "goal": "教員用完成例。学生は仕様から作ります。",
+    "concept": "教員用。第16回の学習後に必要に応じて公開します。",
+    "ok": "初期名、初期あいさつ、空の入力、エラーなしに戻ります。",
+    "trouble": "第15回のコードにリセット処理を混ぜないでください。",
+    "edits": [
+      {
+        "file": "app/src/main/res/values/strings.xml",
+        "before": "</resources>",
+        "after": "    <string name=\"reset_button\">リセット</string>\n</resources>"
+      },
+      {
+        "file": "app/src/main/res/layout/activity_main.xml",
+        "before": "                    android:text=\"@string/apply_name_button\" />\n\n            </LinearLayout>",
+        "after": "                    android:text=\"@string/apply_name_button\" />\n\n                <Button\n                    android:id=\"@+id/resetButton\"\n                    style=\"?attr/materialButtonOutlinedStyle\"\n                    android:layout_width=\"0dp\"\n                    android:layout_height=\"wrap_content\"\n                    android:layout_marginStart=\"12dp\"\n                    android:layout_weight=\"1\"\n                    android:minHeight=\"48dp\"\n                    android:text=\"@string/reset_button\" />\n\n            </LinearLayout>"
+      },
+      {
+        "file": "app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java",
+        "before": "                nameTextView.setText(newName);\n                greetingTextView.setText(R.string.default_greeting);\n            }\n        });",
+        "after": "                nameTextView.setText(newName);\n                greetingTextView.setText(R.string.default_greeting);\n            }\n        });\n\n        Button resetButton = findViewById(R.id.resetButton);\n        resetButton.setOnClickListener(v -> {\n            nameTextView.setText(R.string.default_name);\n            greetingTextView.setText(R.string.default_greeting);\n            nameEditText.setText(\"\");\n            nameEditText.setError(null);\n        });"
+      }
+    ]
+  }
+]

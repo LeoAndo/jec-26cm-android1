@@ -1,0 +1,23 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<testsuites tests="6" failures="0" errors="0" skipped="0" time="50.054" timestamp="2026-09-14T12:50:11" hostname="localhost">
+  <testsuite name="jp.ac.jec.a02profilecard.ExampleInstrumentedTest" tests="1" failures="0" errors="0" skipped="0" time="0.008" timestamp="2026-09-14T12:50:11" hostname="localhost">
+    <properties>
+      <property name="device" value="Pocket_Install_Default_16_20260914(AVD) - 16" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="useAppContext" classname="jp.ac.jec.a02profilecard.ExampleInstrumentedTest" time="0.008" />
+  </testsuite>
+  <testsuite name="jp.ac.jec.a02profilecard.ProfileCardTest" tests="5" failures="0" errors="0" skipped="0" time="47.075" timestamp="2026-09-14T12:50:11" hostname="localhost">
+    <properties>
+      <property name="device" value="Pocket_Install_Default_16_20260914(AVD) - 16" />
+      <property name="flavor" value="" />
+      <property name="project" value=":app" />
+    </properties>
+    <testcase name="longNameAndButtonsWithKeyboard" classname="jp.ac.jec.a02profilecard.ProfileCardTest" time="6.13" />
+    <testcase name="resetFromNameAndErrorAndRepeat" classname="jp.ac.jec.a02profilecard.ProfileCardTest" time="12.959" />
+    <testcase name="appliedNameAndUnappliedInputAreSeparate" classname="jp.ac.jec.a02profilecard.ProfileCardTest" time="8.286" />
+    <testcase name="initialStateAndRepeatedGreeting" classname="jp.ac.jec.a02profilecard.ProfileCardTest" time="3.748" />
+    <testcase name="blankVariantsPreserveCardAndRecover" classname="jp.ac.jec.a02profilecard.ProfileCardTest" time="15.952" />
+  </testsuite>
+</testsuites>

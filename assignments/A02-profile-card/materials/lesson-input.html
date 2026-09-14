@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>A02 | 入力した名前を表示しよう</title><link rel="stylesheet" href="assets/style.css"></head>
+<body><a class="skip" href="#main">本文へ進む</a><header><p class="eyebrow">ANDROID 1 · A02 · 自己紹介カード</p><nav aria-label="教材の目次"><a href="lesson-layout.html">第2週 画面を作る</a><a href="lesson-events.html">第3週 ボタンで変える</a><a href="lesson-input.html" aria-current="page">第4週 名前を入力する</a><a href="exercise.html">第16回 リセットを作る</a><a href="checklist.html">完成確認・提出</a></nav></header>
+<main id="main"><p class="draft">教員確認用の原稿です。授業で使う前に、教員の確認を受けます。</p><h1>入力した名前を表示しよう</h1><p class="lead">第13〜15回。文字を受け取り、空欄を確かめてから表示します。リセットは次の回で自分で追加します。</p><p class="toc"><a href="#step-13">第13回</a> / <a href="#step-14">第14回</a> / <a href="#step-15">第15回</a></p><section><h2>始める時の確認</h2><p>第12回の学年を1へ戻したコードから始めます。あいさつボタンで「こんにちは！1年生のサクラです。」になります。入力欄はまだありません。</p><p><a href="lesson-events.html#step-12">前週の完成確認へ戻る</a></p></section><article id="step-13"><p class="eyebrow">第13回 · 90分</p><h2>13　名前を入力しよう</h2><p>名前入力欄と反映ボタンを置き、入力を文字列として受け取ります。</p><aside class="note"><h3>この回の言葉</h3><p>EditTextは入力の部品です。getTextで入力を取り出し、toStringでStringにします。replaceの左の引用符内は全角スペース1個、右は半角スペース1個です。全角を半角にそろえます。trimは前後の半角空白を除きます。間の空白は残します。</p></aside><section class="edit" id="edit-13-1"><h3>13-1　strings.xmlを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/res/values/strings.xml</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>&lt;/resources&gt;</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、置き換えます。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>&lt;/resources&gt;</code></pre><p class="label">変更後（この範囲だけを貼り付ける）</p><pre tabindex="0"><code>    &lt;string name=&quot;name_label&quot;&gt;名前&lt;/string&gt;
+    &lt;string name=&quot;name_hint&quot;&gt;例：サクラ&lt;/string&gt;
+    &lt;string name=&quot;apply_name_button&quot;&gt;名前を反映&lt;/string&gt;
+    &lt;string name=&quot;name_required&quot;&gt;名前を入力してください&lt;/string&gt;
+&lt;/resources&gt;</code></pre><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section><section class="edit" id="edit-13-2"><h3>13-2　activity_main.xmlを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/res/layout/activity_main.xml</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>android:id=&quot;@+id/greetButton&quot;</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、置き換えます。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>&lt;Button
+    android:id=&quot;@+id/greetButton&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:minHeight=&quot;48dp&quot;
+    android:text=&quot;@string/greet_button&quot; /&gt;</code></pre><p class="label">変更後（この範囲だけを貼り付ける）</p><pre tabindex="0"><code>&lt;Button
+    android:id=&quot;@+id/greetButton&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:minHeight=&quot;48dp&quot;
+    android:text=&quot;@string/greet_button&quot; /&gt;
+
+&lt;TextView
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:layout_marginTop=&quot;24dp&quot;
+    android:labelFor=&quot;@id/nameEditText&quot;
+    android:text=&quot;@string/name_label&quot;
+    android:textColor=&quot;@color/card_text&quot;
+    android:textSize=&quot;16sp&quot; /&gt;
+
+&lt;EditText
+    android:id=&quot;@+id/nameEditText&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:minHeight=&quot;48dp&quot;
+    android:hint=&quot;@string/name_hint&quot;
+    android:inputType=&quot;textPersonName&quot;
+    android:singleLine=&quot;true&quot;
+    android:textColor=&quot;@color/card_text&quot;
+    android:textSize=&quot;18sp&quot; /&gt;
+
+&lt;LinearLayout
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;wrap_content&quot;
+    android:layout_marginTop=&quot;48dp&quot;
+    android:orientation=&quot;horizontal&quot;&gt;
+
+    &lt;Button
+        android:id=&quot;@+id/applyNameButton&quot;
+        android:layout_width=&quot;0dp&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:layout_weight=&quot;1&quot;
+        android:minHeight=&quot;48dp&quot;
+        android:text=&quot;@string/apply_name_button&quot; /&gt;
+
+&lt;/LinearLayout&gt;</code></pre><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section><section class="edit" id="edit-13-3"><h3>13-3　MainActivity.javaを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>import android.widget.Button;</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、置き換えます。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>import android.widget.Button;</code></pre><p class="label">変更後（この範囲だけを貼り付ける）</p><pre tabindex="0"><code>import android.widget.Button;
+import android.widget.EditText;</code></pre><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section><section class="edit" id="edit-13-4"><h3>13-4　MainActivity.javaを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>greetButton.setOnClickListener(v -&gt; {</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、置き換えます。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>greetButton.setOnClickListener(v -&gt; {
+    greetingTextView.setText(message);
+});</code></pre><p class="label">変更後（この範囲だけを貼り付ける）</p><pre tabindex="0"><code>greetButton.setOnClickListener(v -&gt; {
+    greetingTextView.setText(message);
+});
+
+EditText nameEditText = findViewById(R.id.nameEditText);
+Button applyNameButton = findViewById(R.id.applyNameButton);
+
+applyNameButton.setOnClickListener(v -&gt; {
+    String input = nameEditText.getText().toString();
+    String normalized = input.replace(&#x27;　&#x27;, &#x27; &#x27;);
+    String newName = normalized.trim();
+});</code></pre><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section>
+<section class="result"><h3>こうなればOK</h3><ol><li>Run → Run 'app' を選びます。</li><li>ビルドと起動が終わるまで待ちます。</li><li>名前を入力できます。「名前を反映」を押しても、この段階ではカードは変わりません。入力「　リン　」はnewNameが「リン」になると予想します。</li></ol></section>
+<details><summary>うまくいかないとき</summary><p>キーボードでボタンが隠れたら、画面を上へスワイプします。replaceの引用符は半角の単引用符です。入力取得をクリック処理の外へ置かないでください。</p><p>直せないときは、開いているファイルとBuildの最初のエラーを教員に見せます。</p></details>
+<details><summary>第13回終了時の全文を比べる</summary><p>確認用です。上の部分変更を終えた状態です。ファイル名を押すと、このページ内に全文が開きます。</p><details><summary>MainActivity.javaの全文</summary><pre tabindex="0"><code>package jp.ac.jec.a02profilecard;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {
+            Insets systemBars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // ここから授業の処理を追加します。
+        String name = &quot;サクラ&quot;;
+        int grade = 1;
+        String message = &quot;こんにちは！&quot; + grade + &quot;年生の&quot; + name + &quot;です。&quot;;
+
+        TextView greetingTextView = findViewById(R.id.greetingTextView);
+        Button greetButton = findViewById(R.id.greetButton);
+
+        greetButton.setOnClickListener(v -&gt; {
+            greetingTextView.setText(message);
+        });
+
+        EditText nameEditText = findViewById(R.id.nameEditText);
+        Button applyNameButton = findViewById(R.id.applyNameButton);
+
+        applyNameButton.setOnClickListener(v -&gt; {
+            String input = nameEditText.getText().toString();
+            String normalized = input.replace(&#x27;　&#x27;, &#x27; &#x27;);
+            String newName = normalized.trim();
+        });
+    }
+}</code></pre><p><a href="assets/checkpoints/step13/MainActivity.java.txt" download>テキストを保存</a></p></details><details><summary>activity_main.xmlの全文</summary><pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:id=&quot;@+id/main&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;@color/card_background&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;ScrollView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:fillViewport=&quot;true&quot;&gt;
+
+        &lt;LinearLayout
+            android:id=&quot;@+id/content&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:focusableInTouchMode=&quot;true&quot;
+            android:orientation=&quot;vertical&quot;
+            android:padding=&quot;24dp&quot;&gt;
+
+            &lt;TextView
+                android:id=&quot;@+id/titleTextView&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;24dp&quot;
+                android:text=&quot;@string/card_title&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot;
+                android:textStyle=&quot;bold&quot; /&gt;
+
+            &lt;LinearLayout
+                android:id=&quot;@+id/profileRow&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;24dp&quot;
+                android:gravity=&quot;center_vertical&quot;
+                android:orientation=&quot;horizontal&quot;&gt;
+
+                &lt;ImageView
+                    android:id=&quot;@+id/profileImageView&quot;
+                    android:layout_width=&quot;48dp&quot;
+                    android:layout_height=&quot;48dp&quot;
+                    android:layout_marginEnd=&quot;12dp&quot;
+                    android:contentDescription=&quot;@string/profile_description&quot;
+                    android:src=&quot;@drawable/profile_avatar&quot; /&gt;
+
+                &lt;TextView
+                    android:id=&quot;@+id/nameTextView&quot;
+                    android:layout_width=&quot;0dp&quot;
+                    android:layout_weight=&quot;1&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:text=&quot;@string/default_name&quot;
+                    android:textColor=&quot;@color/card_text&quot;
+                    android:textSize=&quot;24sp&quot;
+                    android:textStyle=&quot;bold&quot; /&gt;
+
+            &lt;/LinearLayout&gt;
+
+            &lt;TextView
+                android:id=&quot;@+id/greetingTextView&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;16dp&quot;
+                android:text=&quot;@string/default_greeting&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot; /&gt;
+
+            &lt;Button
+                android:id=&quot;@+id/greetButton&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:minHeight=&quot;48dp&quot;
+                android:text=&quot;@string/greet_button&quot; /&gt;
+
+            &lt;TextView
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginTop=&quot;24dp&quot;
+                android:labelFor=&quot;@id/nameEditText&quot;
+                android:text=&quot;@string/name_label&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;16sp&quot; /&gt;
+
+            &lt;EditText
+                android:id=&quot;@+id/nameEditText&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:minHeight=&quot;48dp&quot;
+                android:hint=&quot;@string/name_hint&quot;
+                android:inputType=&quot;textPersonName&quot;
+                android:singleLine=&quot;true&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot; /&gt;
+
+            &lt;LinearLayout
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginTop=&quot;48dp&quot;
+                android:orientation=&quot;horizontal&quot;&gt;
+
+                &lt;Button
+                    android:id=&quot;@+id/applyNameButton&quot;
+                    android:layout_width=&quot;0dp&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:layout_weight=&quot;1&quot;
+                    android:minHeight=&quot;48dp&quot;
+                    android:text=&quot;@string/apply_name_button&quot; /&gt;
+
+            &lt;/LinearLayout&gt;
+
+        &lt;/LinearLayout&gt;
+    &lt;/ScrollView&gt;
+&lt;/LinearLayout&gt;</code></pre><p><a href="assets/checkpoints/step13/activity_main.xml.txt" download>テキストを保存</a></p></details><details><summary>colors.xmlの全文</summary><pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;color name=&quot;card_background&quot;&gt;#FEF7FF&lt;/color&gt;
+    &lt;color name=&quot;card_text&quot;&gt;#1D1B20&lt;/color&gt;
+&lt;/resources&gt;</code></pre><p><a href="assets/checkpoints/step13/colors.xml.txt" download>テキストを保存</a></p></details><details><summary>strings.xmlの全文</summary><pre tabindex="0"><code>&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;自己紹介カード&lt;/string&gt;
+    &lt;string name=&quot;card_title&quot;&gt;自己紹介カード&lt;/string&gt;
+    &lt;string name=&quot;default_name&quot;&gt;サクラ&lt;/string&gt;
+    &lt;string name=&quot;default_greeting&quot;&gt;よろしくお願いします。&lt;/string&gt;
+    &lt;string name=&quot;profile_description&quot;&gt;プロフィールのイラスト&lt;/string&gt;
+    &lt;string name=&quot;greet_button&quot;&gt;あいさつする&lt;/string&gt;
+    &lt;string name=&quot;name_label&quot;&gt;名前&lt;/string&gt;
+    &lt;string name=&quot;name_hint&quot;&gt;例：サクラ&lt;/string&gt;
+    &lt;string name=&quot;apply_name_button&quot;&gt;名前を反映&lt;/string&gt;
+    &lt;string name=&quot;name_required&quot;&gt;名前を入力してください&lt;/string&gt;
+&lt;/resources&gt;</code></pre><p><a href="assets/checkpoints/step13/strings.xml.txt" download>テキストを保存</a></p></details></details><p class="next"><a href="#step-14">次へ進む →</a></p></article><article id="step-14"><p class="eyebrow">第14回 · 90分</p><h2>14　空欄を確かめよう</h2><p>空欄のときだけ入力を促す案内を出します。</p><aside class="note"><h3>この回の言葉</h3><p>booleanはtrue（はい）かfalse（いいえ）を入れます。isEmptyは空の文字列か調べます。ifの条件がtrueなら前半、falseならelseを動かします。setErrorで案内を出し、nullで消します。requestFocusは入力欄を選びます。</p></aside><section class="edit" id="edit-14-1"><h3>14-1　MainActivity.javaを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>String newName = normalized.trim();</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、置き換えます。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>String newName = normalized.trim();</code></pre><p class="label">変更後（この範囲だけを貼り付ける）</p><pre tabindex="0"><code>String newName = normalized.trim();
+boolean isBlank = newName.isEmpty();
+if (isBlank) {
+    nameEditText.setError(getString(R.string.name_required));
+    nameEditText.requestFocus();
+} else {
+    nameEditText.setError(null);
+}</code></pre><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section>
+<section class="result"><h3>こうなればOK</h3><ol><li>Run → Run 'app' を選びます。</li><li>ビルドと起動が終わるまで待ちます。</li><li>空欄と空白だけの入力で「名前を入力してください」が出ます。「リン」を反映するとエラーが消えます。カードの名前はまだサクラです。</li></ol></section>
+<details><summary>うまくいかないとき</summary><p>エラー文が見えないときは入力欄をタップします。半角と全角の両方の空白だけで確かめます。</p><p>直せないときは、開いているファイルとBuildの最初のエラーを教員に見せます。</p></details>
+<details><summary>第14回終了時の全文を比べる</summary><p>確認用です。上の部分変更を終えた状態です。ファイル名を押すと、このページ内に全文が開きます。</p><details><summary>MainActivity.javaの全文</summary><pre tabindex="0"><code>package jp.ac.jec.a02profilecard;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {
+            Insets systemBars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // ここから授業の処理を追加します。
+        String name = &quot;サクラ&quot;;
+        int grade = 1;
+        String message = &quot;こんにちは！&quot; + grade + &quot;年生の&quot; + name + &quot;です。&quot;;
+
+        TextView greetingTextView = findViewById(R.id.greetingTextView);
+        Button greetButton = findViewById(R.id.greetButton);
+
+        greetButton.setOnClickListener(v -&gt; {
+            greetingTextView.setText(message);
+        });
+
+        EditText nameEditText = findViewById(R.id.nameEditText);
+        Button applyNameButton = findViewById(R.id.applyNameButton);
+
+        applyNameButton.setOnClickListener(v -&gt; {
+            String input = nameEditText.getText().toString();
+            String normalized = input.replace(&#x27;　&#x27;, &#x27; &#x27;);
+            String newName = normalized.trim();
+            boolean isBlank = newName.isEmpty();
+            if (isBlank) {
+                nameEditText.setError(getString(R.string.name_required));
+                nameEditText.requestFocus();
+            } else {
+                nameEditText.setError(null);
+            }
+        });
+    }
+}</code></pre><p><a href="assets/checkpoints/step14/MainActivity.java.txt" download>テキストを保存</a></p></details><details><summary>activity_main.xmlの全文</summary><pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:id=&quot;@+id/main&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;@color/card_background&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;ScrollView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:fillViewport=&quot;true&quot;&gt;
+
+        &lt;LinearLayout
+            android:id=&quot;@+id/content&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:focusableInTouchMode=&quot;true&quot;
+            android:orientation=&quot;vertical&quot;
+            android:padding=&quot;24dp&quot;&gt;
+
+            &lt;TextView
+                android:id=&quot;@+id/titleTextView&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;24dp&quot;
+                android:text=&quot;@string/card_title&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot;
+                android:textStyle=&quot;bold&quot; /&gt;
+
+            &lt;LinearLayout
+                android:id=&quot;@+id/profileRow&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;24dp&quot;
+                android:gravity=&quot;center_vertical&quot;
+                android:orientation=&quot;horizontal&quot;&gt;
+
+                &lt;ImageView
+                    android:id=&quot;@+id/profileImageView&quot;
+                    android:layout_width=&quot;48dp&quot;
+                    android:layout_height=&quot;48dp&quot;
+                    android:layout_marginEnd=&quot;12dp&quot;
+                    android:contentDescription=&quot;@string/profile_description&quot;
+                    android:src=&quot;@drawable/profile_avatar&quot; /&gt;
+
+                &lt;TextView
+                    android:id=&quot;@+id/nameTextView&quot;
+                    android:layout_width=&quot;0dp&quot;
+                    android:layout_weight=&quot;1&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:text=&quot;@string/default_name&quot;
+                    android:textColor=&quot;@color/card_text&quot;
+                    android:textSize=&quot;24sp&quot;
+                    android:textStyle=&quot;bold&quot; /&gt;
+
+            &lt;/LinearLayout&gt;
+
+            &lt;TextView
+                android:id=&quot;@+id/greetingTextView&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;16dp&quot;
+                android:text=&quot;@string/default_greeting&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot; /&gt;
+
+            &lt;Button
+                android:id=&quot;@+id/greetButton&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:minHeight=&quot;48dp&quot;
+                android:text=&quot;@string/greet_button&quot; /&gt;
+
+            &lt;TextView
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginTop=&quot;24dp&quot;
+                android:labelFor=&quot;@id/nameEditText&quot;
+                android:text=&quot;@string/name_label&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;16sp&quot; /&gt;
+
+            &lt;EditText
+                android:id=&quot;@+id/nameEditText&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:minHeight=&quot;48dp&quot;
+                android:hint=&quot;@string/name_hint&quot;
+                android:inputType=&quot;textPersonName&quot;
+                android:singleLine=&quot;true&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot; /&gt;
+
+            &lt;LinearLayout
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginTop=&quot;48dp&quot;
+                android:orientation=&quot;horizontal&quot;&gt;
+
+                &lt;Button
+                    android:id=&quot;@+id/applyNameButton&quot;
+                    android:layout_width=&quot;0dp&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:layout_weight=&quot;1&quot;
+                    android:minHeight=&quot;48dp&quot;
+                    android:text=&quot;@string/apply_name_button&quot; /&gt;
+
+            &lt;/LinearLayout&gt;
+
+        &lt;/LinearLayout&gt;
+    &lt;/ScrollView&gt;
+&lt;/LinearLayout&gt;</code></pre><p><a href="assets/checkpoints/step14/activity_main.xml.txt" download>テキストを保存</a></p></details><details><summary>colors.xmlの全文</summary><pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;color name=&quot;card_background&quot;&gt;#FEF7FF&lt;/color&gt;
+    &lt;color name=&quot;card_text&quot;&gt;#1D1B20&lt;/color&gt;
+&lt;/resources&gt;</code></pre><p><a href="assets/checkpoints/step14/colors.xml.txt" download>テキストを保存</a></p></details><details><summary>strings.xmlの全文</summary><pre tabindex="0"><code>&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;自己紹介カード&lt;/string&gt;
+    &lt;string name=&quot;card_title&quot;&gt;自己紹介カード&lt;/string&gt;
+    &lt;string name=&quot;default_name&quot;&gt;サクラ&lt;/string&gt;
+    &lt;string name=&quot;default_greeting&quot;&gt;よろしくお願いします。&lt;/string&gt;
+    &lt;string name=&quot;profile_description&quot;&gt;プロフィールのイラスト&lt;/string&gt;
+    &lt;string name=&quot;greet_button&quot;&gt;あいさつする&lt;/string&gt;
+    &lt;string name=&quot;name_label&quot;&gt;名前&lt;/string&gt;
+    &lt;string name=&quot;name_hint&quot;&gt;例：サクラ&lt;/string&gt;
+    &lt;string name=&quot;apply_name_button&quot;&gt;名前を反映&lt;/string&gt;
+    &lt;string name=&quot;name_required&quot;&gt;名前を入力してください&lt;/string&gt;
+&lt;/resources&gt;</code></pre><p><a href="assets/checkpoints/step14/strings.xml.txt" download>テキストを保存</a></p></details></details><p class="next"><a href="#step-15">次へ進む →</a></p></article><article id="step-15"><p class="eyebrow">第15回 · 90分</p><h2>15　入力した名前をカードに出そう</h2><p>有効な入力だけを表示し、反映した名前であいさつします。</p><aside class="note"><h3>この回の言葉</h3><p>名前を反映する処理と、あいさつを変える処理は別です。あいさつボタンでは、入力欄ではなくカードのnameTextViewを読みます。setTextにR.stringの値を渡すと、strings.xmlの言葉を表示します。</p></aside><section class="edit" id="edit-15-1"><h3>15-1　MainActivity.javaを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>String name = &quot;サクラ&quot;;</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、削除します。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>String name = &quot;サクラ&quot;;
+int grade = 1;
+String message = &quot;こんにちは！&quot; + grade + &quot;年生の&quot; + name + &quot;です。&quot;;</code></pre><p><strong>変更後：</strong>この3行と直後の空行を削除します。前後の処理をつなげます。</p><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section><section class="edit" id="edit-15-2"><h3>15-2　MainActivity.javaを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>TextView greetingTextView = findViewById(R.id.greetingTextView);</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、置き換えます。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>TextView greetingTextView = findViewById(R.id.greetingTextView);
+Button greetButton = findViewById(R.id.greetButton);</code></pre><p class="label">変更後（この範囲だけを貼り付ける）</p><pre tabindex="0"><code>TextView nameTextView = findViewById(R.id.nameTextView);
+TextView greetingTextView = findViewById(R.id.greetingTextView);
+Button greetButton = findViewById(R.id.greetButton);</code></pre><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section><section class="edit" id="edit-15-3"><h3>15-3　MainActivity.javaを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>greetButton.setOnClickListener(v -&gt; {</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、置き換えます。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>greetButton.setOnClickListener(v -&gt; {
+    greetingTextView.setText(message);
+});</code></pre><p class="label">変更後（この範囲だけを貼り付ける）</p><pre tabindex="0"><code>greetButton.setOnClickListener(v -&gt; {
+    String name = nameTextView.getText().toString();
+    int grade = 1;
+    String message = &quot;こんにちは！&quot; + grade + &quot;年生の&quot; + name + &quot;です。&quot;;
+    greetingTextView.setText(message);
+});</code></pre><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section><section class="edit" id="edit-15-4"><h3>15-4　MainActivity.javaを変更する</h3><p><strong>開くファイル：</strong><code>app/src/main/java/jp/ac/jec/a02profilecard/MainActivity.java</code></p><ol><li>Android Studioのファイル一覧で、このファイルを開きます。</li><li>⌘Fで<code>nameEditText.setError(null);</code>を探します。</li><li>その場所を含む「変更前」と同じ範囲だけを選び、置き換えます。</li></ol><p class="label">変更前（直前の手順が終わった状態）</p><pre tabindex="0"><code>nameEditText.setError(null);</code></pre><p class="label">変更後（この範囲だけを貼り付ける）</p><pre tabindex="0"><code>nameEditText.setError(null);
+nameTextView.setText(newName);
+greetingTextView.setText(R.string.default_greeting);</code></pre><p>この範囲以外は残します。ファイル全体の置き換えではありません。</p></section>
+<section class="result"><h3>こうなればOK</h3><ol><li>Run → Run 'app' を選びます。</li><li>ビルドと起動が終わるまで待ちます。</li><li>リンを反映してあいさつします。入力だけミナに変えても、あいさつはリンです。反映してから押すとミナです。空欄エラーではカードの表示を変えません。</li></ol></section>
+<details><summary>うまくいかないとき</summary><p>名前が古いときは、String nameの行があいさつのクリック処理の中にあるか見ます。if側へ名前更新を書いていないか確認します。</p><p>直せないときは、開いているファイルとBuildの最初のエラーを教員に見せます。</p></details>
+<details><summary>第15回終了時の全文を比べる</summary><p>確認用です。上の部分変更を終えた状態です。ファイル名を押すと、このページ内に全文が開きます。</p><details><summary>MainActivity.javaの全文</summary><pre tabindex="0"><code>package jp.ac.jec.a02profilecard;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {
+            Insets systemBars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // ここから授業の処理を追加します。
+        TextView nameTextView = findViewById(R.id.nameTextView);
+        TextView greetingTextView = findViewById(R.id.greetingTextView);
+        Button greetButton = findViewById(R.id.greetButton);
+
+        greetButton.setOnClickListener(v -&gt; {
+            String name = nameTextView.getText().toString();
+            int grade = 1;
+            String message = &quot;こんにちは！&quot; + grade + &quot;年生の&quot; + name + &quot;です。&quot;;
+            greetingTextView.setText(message);
+        });
+
+        EditText nameEditText = findViewById(R.id.nameEditText);
+        Button applyNameButton = findViewById(R.id.applyNameButton);
+
+        applyNameButton.setOnClickListener(v -&gt; {
+            String input = nameEditText.getText().toString();
+            String normalized = input.replace(&#x27;　&#x27;, &#x27; &#x27;);
+            String newName = normalized.trim();
+            boolean isBlank = newName.isEmpty();
+            if (isBlank) {
+                nameEditText.setError(getString(R.string.name_required));
+                nameEditText.requestFocus();
+            } else {
+                nameEditText.setError(null);
+                nameTextView.setText(newName);
+                greetingTextView.setText(R.string.default_greeting);
+            }
+        });
+    }
+}</code></pre><p><a href="assets/checkpoints/step15/MainActivity.java.txt" download>テキストを保存</a></p></details><details><summary>activity_main.xmlの全文</summary><pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    android:id=&quot;@+id/main&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:background=&quot;@color/card_background&quot;
+    android:orientation=&quot;vertical&quot;&gt;
+
+    &lt;ScrollView
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:fillViewport=&quot;true&quot;&gt;
+
+        &lt;LinearLayout
+            android:id=&quot;@+id/content&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:focusableInTouchMode=&quot;true&quot;
+            android:orientation=&quot;vertical&quot;
+            android:padding=&quot;24dp&quot;&gt;
+
+            &lt;TextView
+                android:id=&quot;@+id/titleTextView&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;24dp&quot;
+                android:text=&quot;@string/card_title&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot;
+                android:textStyle=&quot;bold&quot; /&gt;
+
+            &lt;LinearLayout
+                android:id=&quot;@+id/profileRow&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;24dp&quot;
+                android:gravity=&quot;center_vertical&quot;
+                android:orientation=&quot;horizontal&quot;&gt;
+
+                &lt;ImageView
+                    android:id=&quot;@+id/profileImageView&quot;
+                    android:layout_width=&quot;48dp&quot;
+                    android:layout_height=&quot;48dp&quot;
+                    android:layout_marginEnd=&quot;12dp&quot;
+                    android:contentDescription=&quot;@string/profile_description&quot;
+                    android:src=&quot;@drawable/profile_avatar&quot; /&gt;
+
+                &lt;TextView
+                    android:id=&quot;@+id/nameTextView&quot;
+                    android:layout_width=&quot;0dp&quot;
+                    android:layout_weight=&quot;1&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:text=&quot;@string/default_name&quot;
+                    android:textColor=&quot;@color/card_text&quot;
+                    android:textSize=&quot;24sp&quot;
+                    android:textStyle=&quot;bold&quot; /&gt;
+
+            &lt;/LinearLayout&gt;
+
+            &lt;TextView
+                android:id=&quot;@+id/greetingTextView&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginBottom=&quot;16dp&quot;
+                android:text=&quot;@string/default_greeting&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot; /&gt;
+
+            &lt;Button
+                android:id=&quot;@+id/greetButton&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:minHeight=&quot;48dp&quot;
+                android:text=&quot;@string/greet_button&quot; /&gt;
+
+            &lt;TextView
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginTop=&quot;24dp&quot;
+                android:labelFor=&quot;@id/nameEditText&quot;
+                android:text=&quot;@string/name_label&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;16sp&quot; /&gt;
+
+            &lt;EditText
+                android:id=&quot;@+id/nameEditText&quot;
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:minHeight=&quot;48dp&quot;
+                android:hint=&quot;@string/name_hint&quot;
+                android:inputType=&quot;textPersonName&quot;
+                android:singleLine=&quot;true&quot;
+                android:textColor=&quot;@color/card_text&quot;
+                android:textSize=&quot;18sp&quot; /&gt;
+
+            &lt;LinearLayout
+                android:layout_width=&quot;match_parent&quot;
+                android:layout_height=&quot;wrap_content&quot;
+                android:layout_marginTop=&quot;48dp&quot;
+                android:orientation=&quot;horizontal&quot;&gt;
+
+                &lt;Button
+                    android:id=&quot;@+id/applyNameButton&quot;
+                    android:layout_width=&quot;0dp&quot;
+                    android:layout_height=&quot;wrap_content&quot;
+                    android:layout_weight=&quot;1&quot;
+                    android:minHeight=&quot;48dp&quot;
+                    android:text=&quot;@string/apply_name_button&quot; /&gt;
+
+            &lt;/LinearLayout&gt;
+
+        &lt;/LinearLayout&gt;
+    &lt;/ScrollView&gt;
+&lt;/LinearLayout&gt;</code></pre><p><a href="assets/checkpoints/step15/activity_main.xml.txt" download>テキストを保存</a></p></details><details><summary>colors.xmlの全文</summary><pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;resources&gt;
+    &lt;color name=&quot;card_background&quot;&gt;#FEF7FF&lt;/color&gt;
+    &lt;color name=&quot;card_text&quot;&gt;#1D1B20&lt;/color&gt;
+&lt;/resources&gt;</code></pre><p><a href="assets/checkpoints/step15/colors.xml.txt" download>テキストを保存</a></p></details><details><summary>strings.xmlの全文</summary><pre tabindex="0"><code>&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;自己紹介カード&lt;/string&gt;
+    &lt;string name=&quot;card_title&quot;&gt;自己紹介カード&lt;/string&gt;
+    &lt;string name=&quot;default_name&quot;&gt;サクラ&lt;/string&gt;
+    &lt;string name=&quot;default_greeting&quot;&gt;よろしくお願いします。&lt;/string&gt;
+    &lt;string name=&quot;profile_description&quot;&gt;プロフィールのイラスト&lt;/string&gt;
+    &lt;string name=&quot;greet_button&quot;&gt;あいさつする&lt;/string&gt;
+    &lt;string name=&quot;name_label&quot;&gt;名前&lt;/string&gt;
+    &lt;string name=&quot;name_hint&quot;&gt;例：サクラ&lt;/string&gt;
+    &lt;string name=&quot;apply_name_button&quot;&gt;名前を反映&lt;/string&gt;
+    &lt;string name=&quot;name_required&quot;&gt;名前を入力してください&lt;/string&gt;
+&lt;/resources&gt;</code></pre><p><a href="assets/checkpoints/step15/strings.xml.txt" download>テキストを保存</a></p></details></details><p class="next"><a href="exercise.html">次へ進む →</a></p></article><section><h2>この週の途中確認</h2><p><a href="checklist.html#checks">C05〜C10</a>を確かめます。リセットはまだないのでC11は次の回で確認します。</p><p>振り返り：空欄を確かめる前に行う2つの処理と、あいさつに使う名前の場所を指してください。</p></section></main>
+<footer><nav aria-label="ページの移動"><a href="lesson-layout.html">第2週 画面を作る</a><a href="lesson-events.html">第3週 ボタンで変える</a><a href="lesson-input.html" aria-current="page">第4週 名前を入力する</a><a href="exercise.html">第16回 リセットを作る</a><a href="checklist.html">完成確認・提出</a></nav><p>A02 自己紹介カード · Java / XML · 1コマ90分。速さで評価しません。</p><a href="#main">ページの先頭へ</a></footer></body></html>

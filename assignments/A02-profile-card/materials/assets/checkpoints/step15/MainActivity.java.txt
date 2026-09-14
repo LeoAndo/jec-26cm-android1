@@ -1,0 +1,58 @@
+package jp.ac.jec.a02profilecard;
+
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars() | WindowInsetsCompat.Type.ime());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        // ここから授業の処理を追加します。
+        TextView nameTextView = findViewById(R.id.nameTextView);
+        TextView greetingTextView = findViewById(R.id.greetingTextView);
+        Button greetButton = findViewById(R.id.greetButton);
+
+        greetButton.setOnClickListener(v -> {
+            String name = nameTextView.getText().toString();
+            int grade = 1;
+            String message = "こんにちは！" + grade + "年生の" + name + "です。";
+            greetingTextView.setText(message);
+        });
+
+        EditText nameEditText = findViewById(R.id.nameEditText);
+        Button applyNameButton = findViewById(R.id.applyNameButton);
+
+        applyNameButton.setOnClickListener(v -> {
+            String input = nameEditText.getText().toString();
+            String normalized = input.replace('　', ' ');
+            String newName = normalized.trim();
+            boolean isBlank = newName.isEmpty();
+            if (isBlank) {
+                nameEditText.setError(getString(R.string.name_required));
+                nameEditText.requestFocus();
+            } else {
+                nameEditText.setError(null);
+                nameTextView.setText(newName);
+                greetingTextView.setText(R.string.default_greeting);
+            }
+        });
+    }
+}

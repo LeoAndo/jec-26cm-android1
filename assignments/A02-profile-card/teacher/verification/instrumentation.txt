@@ -1,0 +1,10 @@
+
+jp.ac.jec.a02profilecard.CaptureStatesTest:.
+jp.ac.jec.a02profilecard.ExampleInstrumentedTest:.
+jp.ac.jec.a02profilecard.ProfileCardTest:.....
+
+Time: 62.117
+
+OK (7 tests)
+
+

@@ -19,7 +19,7 @@
 | MainActivity.java | なし。AppCompatActivity、EdgeToEdge.enable、R.id.mainへの余白適用を維持する。 |
 | activity_main.xml | ConstraintLayoutをLinearLayoutへ変更する。ルートのmain IDを維持し、システムバー用の余白処理はJavaの生成コードへ任せる。内側のLinearLayoutで24dpの余白と中央配置を扱う。 |
 | strings.xml | app_nameを変更し、greeting_messageを追加する。 |
-| values/themes.xml、values-night/themes.xml | Theme.Material3.DayNight.NoActionBarをTheme.Material3.Light.NoActionBarに変更し、強制ダーク化を無効にする。Base.ThemeとThemeの継承関係を維持する。 |
+| values/themes.xml、values-night/themes.xml | 変更なし。生成時のTheme.Material3.DayNight.NoActionBarと、Base.ThemeとThemeの継承関係を維持する。ライト固定やforceDarkAllowedの追加は行わない。 |
 | AndroidManifest.xml、Gradle設定 | 学生のコード修正では変更しない。 |
 
 [変更前から手順06への差分](assets/template-to-step06.patch)は教員の確認用。HTMLでは、対象ファイル・変更箇所・変更前後を示す。変更後の全文は見比べるための補助とする。手順09はgreeting_messageの言葉だけを日本語に変える。

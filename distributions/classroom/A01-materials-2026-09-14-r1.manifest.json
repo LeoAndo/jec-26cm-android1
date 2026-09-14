@@ -1,0 +1,19 @@
+{
+  "assignment": "A01",
+  "version": "2026-09-14-r1",
+  "status": "teacher-review",
+  "archive": "A01-materials-2026-09-14-r1.zip",
+  "sha256": "60d08f89384a6d00603df8573344cc97142d2b46e136d6d0ab2af4dfae96cd79",
+  "entry": "A01-materials-2026-09-14-r1/index.html",
+  "localReferences": 83,
+  "relocatedArchiveCheck": "PASS",
+  "files": {
+    "START_HERE.txt": "2a23b15c7a49955a461d91aab0ee161aa1a3beb718a0aed02ea9916b1e9dacdd",
+    "assets/code/activity_main.xml.txt": "8b47d25e60519cece9af13b8ed30cb00eb506d4af5581491e44f18137591882e",
+    "assets/style.css": "28fdd587eae378e05c918413c01ae29d335dd8953db5dda34c27992522c16f95",
+    "checklist.html": "6188c886d571f6b698f51af3b63108a6e837cb025df416872c16291ec6fb6426",
+    "exercise.html": "7a298c40484ae872f550cbc047bbc533abb5d541337286bfda705473bb98879e",
+    "index.html": "eb751d07e3876336a86c8dc56b555139d78d53e45949a7e9a87337425ffa61aa",
+    "lesson.html": "764320b091c9cd64f0dbda0ca0c90a5bc829d80fd29b1c59b73a013077e43e47"
+  }
+}
