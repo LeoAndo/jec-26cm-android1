@@ -1,0 +1,55 @@
+--- a/activity_main.xml
++++ b/activity_main.xml
+@@ -2,2 +2 @@
+-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+-    xmlns:app="http://schemas.android.com/apk/res-auto"
++<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+@@ -7,0 +7,2 @@
++    android:orientation="vertical"
++    android:background="#FFFFFF"
+@@ -10,8 +11,6 @@
+-    <TextView
+-        android:layout_width="wrap_content"
+-        android:layout_height="wrap_content"
+-        android:text="Hello World!"
+-        app:layout_constraintBottom_toBottomOf="parent"
+-        app:layout_constraintEnd_toEndOf="parent"
+-        app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent" />
++    <LinearLayout
++        android:layout_width="match_parent"
++        android:layout_height="match_parent"
++        android:orientation="vertical"
++        android:gravity="center"
++        android:padding="24dp">
+@@ -19 +18,11 @@
+-</androidx.constraintlayout.widget.ConstraintLayout>
++        <TextView
++            android:id="@+id/greetingText"
++            android:layout_width="match_parent"
++            android:layout_height="wrap_content"
++            android:text="@string/greeting_message"
++            android:textSize="24sp"
++            android:textColor="#212121"
++            android:gravity="center" />
++
++    </LinearLayout>
++</LinearLayout>
+--- a/strings.xml
++++ b/strings.xml
+@@ -2 +2,2 @@
+-    <string name="app_name">A01FirstApp</string>
++    <string name="app_name">はじめてのアプリ</string>
++    <string name="greeting_message">Hello, Android!</string>
+--- a/themes-night.xml
++++ b/themes-night.xml
+@@ -3 +3,2 @@
+-    <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.DayNight.NoActionBar">
++    <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.Light.NoActionBar">
++        <item name="android:forceDarkAllowed">false</item>
+--- a/themes.xml
++++ b/themes.xml
+@@ -3 +3,2 @@
+-    <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.DayNight.NoActionBar">
++    <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.Light.NoActionBar">
++        <item name="android:forceDarkAllowed">false</item>

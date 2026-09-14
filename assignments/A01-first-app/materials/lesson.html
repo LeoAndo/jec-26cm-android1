@@ -145,7 +145,7 @@
 </tr>
 <tr>
 <td>Minimum SDK（対応するAndroidの下限）</td>
-<td><strong>API 24</strong></td>
+<td><strong>API 30</strong></td>
 </tr>
 <tr>
 <td>その他の欄</td>
@@ -251,44 +251,77 @@
 </nav>
 </section>
 <section class="card" id="step-06" aria-labelledby="heading-06">
-<div class="step-meta"><span>STEP 06</span><span>第2回 / 目安 50分</span>
-</div>
+<div class="step-meta"><span>STEP 06</span><span>第2回 / 目安 50分</span></div>
 <h2 id="heading-06">画面に文字を置こう</h2>
-<p>共通のコードを写して、白い画面のまん中に文字を置きます。</p>
+<p>Empty Views Activityが作ったコードを、少しずつ変えます。変更前と変更後を比べましょう。</p>
 <p class="place"><strong>操作する場所</strong>　手順05で開いたファイル</p>
-<p>コードは、コンピューターへの指示を書いた文字です。この手順は、教員と1つずつ進めます。まだ全部を覚えなくて大丈夫です。</p>
-<h3>コードを写す方法</h3>
-<ol class="steps">
-<li>下に指定されたファイルをAndroid Studioで開きます。</li>
-<li>教材のコード欄の中だけを選択します。「コードを保存」からテキストを開いて選択してもよいです。</li>
-<li><kbd>⌘</kbd> + <kbd>C</kbd> でコピーします。</li>
-<li>Android Studioのファイルの文字がある場所をクリックします。</li>
-<li><kbd>⌘</kbd> + <kbd>A</kbd> で、そのファイルの文字を全部選択します。</li>
-<li><kbd>⌘</kbd> + <kbd>V</kbd> で貼り付けます。</li>
-</ol>
-<div class="note">下の4種類は、いずれも<strong>ファイル全体を置き換える</strong>コードです。ファイル名を確かめてから貼り付けます。途中で赤い線が出ても、4種類をそろえるまで進めます。
-</div>
+<h3>今回、変えるファイル</h3>
+<div class="table-wrap"><table><thead><tr><th scope="col">ファイル</th><th scope="col">変えること</th></tr></thead><tbody>
+<tr><td>strings.xml</td><td>アプリの名前を変え、あいさつを1行追加する。</td></tr>
+<tr><td>activity_main.xml</td><td>部品の入れ物をLinearLayoutに変え、文字と余白を整える。</td></tr>
+<tr><td>values/themes.xml、values-night/themes.xml</td><td>明るい色の画面にそろえる。</td></tr>
+<tr><td>MainActivity.java、AndroidManifest.xml、Gradleの設定</td><td>変更しない。</td></tr>
+</tbody></table></div>
+<p>入力する記号は変更後の例と同じにします。コピーは <kbd>⌘</kbd> + <kbd>C</kbd>、貼り付けは <kbd>⌘</kbd> + <kbd>V</kbd> です。変更する文字だけを選んで貼り付けます。</p>
+<div class="note">変更前のコードが見つからない場合は、開いているファイルを教員に見せてください。MainActivity.javaはJavaで作ったものを使います。</div>
 <h3>① 表示する言葉を用意する</h3>
-<p><code>app/src/main/res/values/strings.xml</code> の全体を置き換えます。</p>
-<div class="code-label"><span>strings.xml・ファイル全体</span><a href="assets/code/strings.xml.txt" download>コードを保存（テキスト）</a>
-</div>
+<p><code>app/src/main/res/values/strings.xml</code> を開きます。</p>
+<ol class="steps"><li><code>app_name</code> の言葉を <code>A01FirstApp</code> から <code>はじめてのアプリ</code> に変えます。</li>
+<li>その下に、<code>greeting_message</code> の行を追加します。<code>&lt;/resources&gt;</code> の前に入れます。</li></ol>
+<h4>変更前</h4>
+<pre tabindex="0"><code>&lt;resources&gt;
+    &lt;string name=&quot;app_name&quot;&gt;A01FirstApp&lt;/string&gt;
+&lt;/resources&gt;
+</code></pre>
+<h4>変更後</h4>
 <pre tabindex="0"><code>&lt;resources&gt;
     &lt;string name=&quot;app_name&quot;&gt;はじめてのアプリ&lt;/string&gt;
     &lt;string name=&quot;greeting_message&quot;&gt;Hello, Android!&lt;/string&gt;
 &lt;/resources&gt;
 </code></pre>
-<h3>② 画面に文字を置く</h3>
-<p><code>app/src/main/res/layout/activity_main.xml</code> の全体を置き換えます。</p>
-<p>部品を並べる入れ物が <strong>LinearLayout</strong>（リニアレイアウト）、文字を表示する部品が <strong>TextView</strong>（テキストビュー）です。</p>
-<div class="code-label"><span>activity_main.xml・ファイル全体</span><a href="assets/code/activity_main.xml.txt" download>コードを保存（テキスト）</a>
-</div>
+<h3>② 部品の入れ物を変える</h3>
+<p><code>app/src/main/res/layout/activity_main.xml</code> を開きます。文字を表示する部品が <strong>TextView</strong>、部品を並べる入れ物が <strong>LinearLayout</strong> です。</p>
+<ol class="steps">
+<li>先頭と末尾の <code>androidx.constraintlayout.widget.ConstraintLayout</code> を <code>LinearLayout</code> に変えます。</li>
+<li><code>xmlns:app</code> の行を消します。</li>
+<li>外側の入れ物に <code>android:orientation="vertical"</code> と <code>android:background="#FFFFFF"</code> を追加します。</li>
+<li>TextViewの外側に、変更後の例のようにもう1つLinearLayoutを追加します。</li>
+<li>TextViewの <code>app:layout_constraint</code> で始まる4行を消します。</li>
+<li>TextViewの横幅と表示する言葉を、変更後の例に合わせて変えます。</li>
+<li>TextViewに <code>android:id</code>、<code>android:textSize</code>、<code>android:textColor</code>、<code>android:gravity</code> を追加します。</li>
+</ol>
+<p><code>android:id="@+id/main"</code> は残します。Javaのコードが、この名前を使って画面の上下の余白を整えます。内側のLinearLayoutは、文字の周りに24dpの余白を作ります。</p>
+<h4>変更前</h4>
+<pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;androidx.constraintlayout.widget.ConstraintLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:app=&quot;http://schemas.android.com/apk/res-auto&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/main&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
+
+    &lt;TextView
+        android:layout_width=&quot;wrap_content&quot;
+        android:layout_height=&quot;wrap_content&quot;
+        android:text=&quot;Hello World!&quot;
+        app:layout_constraintBottom_toBottomOf=&quot;parent&quot;
+        app:layout_constraintEnd_toEndOf=&quot;parent&quot;
+        app:layout_constraintStart_toStartOf=&quot;parent&quot;
+        app:layout_constraintTop_toTopOf=&quot;parent&quot; /&gt;
+
+&lt;/androidx.constraintlayout.widget.ConstraintLayout&gt;
+</code></pre>
+<h4>変更後</h4>
 <pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 &lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/main&quot;
     android:layout_width=&quot;match_parent&quot;
     android:layout_height=&quot;match_parent&quot;
     android:orientation=&quot;vertical&quot;
     android:background=&quot;#FFFFFF&quot;
-    android:fitsSystemWindows=&quot;true&quot;&gt;
+    tools:context=&quot;.MainActivity&quot;&gt;
 
     &lt;LinearLayout
         android:layout_width=&quot;match_parent&quot;
@@ -309,80 +342,111 @@
     &lt;/LinearLayout&gt;
 &lt;/LinearLayout&gt;
 </code></pre>
-<h3>③ この画面を表示する</h3>
-<p><code>app/src/main/java/jp/ac/jec/a01firstapp/MainActivity.java</code> の全体を置き換えます。</p>
-<p><code>setContentView(R.layout.activity_main);</code> が、②の画面を表示する指示です。</p>
-<div class="code-label"><span>MainActivity.java・ファイル全体</span><a href="assets/code/MainActivity.java.txt" download>コードを保存（テキスト）</a>
-</div>
-<pre tabindex="0"><code>package jp.ac.jec.a01firstapp;
+<p>外側のLinearLayout、内側のLinearLayout、TextViewの順に入っています。閉じる <code>&lt;/LinearLayout&gt;</code> が2つあることも確かめます。</p>
+<details><summary>変更後のファイル全体を確かめる</summary>
+<pre tabindex="0"><code>&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+&lt;LinearLayout xmlns:android=&quot;http://schemas.android.com/apk/res/android&quot;
+    xmlns:tools=&quot;http://schemas.android.com/tools&quot;
+    android:id=&quot;@+id/main&quot;
+    android:layout_width=&quot;match_parent&quot;
+    android:layout_height=&quot;match_parent&quot;
+    android:orientation=&quot;vertical&quot;
+    android:background=&quot;#FFFFFF&quot;
+    tools:context=&quot;.MainActivity&quot;&gt;
 
-import android.app.Activity;
-import android.os.Bundle;
+    &lt;LinearLayout
+        android:layout_width=&quot;match_parent&quot;
+        android:layout_height=&quot;match_parent&quot;
+        android:orientation=&quot;vertical&quot;
+        android:gravity=&quot;center&quot;
+        android:padding=&quot;24dp&quot;&gt;
 
-public class MainActivity extends Activity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-    }
-}
+        &lt;TextView
+            android:id=&quot;@+id/greetingText&quot;
+            android:layout_width=&quot;match_parent&quot;
+            android:layout_height=&quot;wrap_content&quot;
+            android:text=&quot;@string/greeting_message&quot;
+            android:textSize=&quot;24sp&quot;
+            android:textColor=&quot;#212121&quot;
+            android:gravity=&quot;center&quot; /&gt;
+
+    &lt;/LinearLayout&gt;
+&lt;/LinearLayout&gt;
 </code></pre>
-<h3>④ 画面の見た目をそろえる</h3>
-<p><code>app/src/main/res/values/themes.xml</code> の全体を置き換えます。</p>
-<div class="code-label"><span>themes.xml・ファイル全体</span><a href="assets/code/themes.xml.txt" download>コードを保存（テキスト）</a>
-</div>
-<pre tabindex="0"><code>&lt;resources&gt;
-    &lt;style name=&quot;Theme.A01FirstApp&quot; parent=&quot;android:style/Theme.Material.Light.NoActionBar&quot;&gt;
+<p><a href="assets/code/activity_main.xml.txt" download>変更後のコードを保存（テキスト）</a></p></details>
+<h3>③ 明るい色の画面にそろえる</h3>
+<p><code>app/src/main/res/values/themes.xml</code> を開きます。</p>
+<ol class="steps"><li><code>parent</code> の <code>DayNight</code> を <code>Light</code> に変えます。</li>
+<li>その下に <code>android:forceDarkAllowed</code> の行を追加します。</li></ol>
+<p>変更前の行：</p>
+<pre tabindex="0"><code>&lt;style name=&quot;Base.Theme.A01FirstApp&quot; parent=&quot;Theme.Material3.DayNight.NoActionBar&quot;&gt;</code></pre>
+<p>変更後の2行：</p>
+<pre tabindex="0"><code>&lt;style name=&quot;Base.Theme.A01FirstApp&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;&gt;
+    &lt;item name=&quot;android:forceDarkAllowed&quot;&gt;false&lt;/item&gt;</code></pre>
+<p>この例はファイルの一部分です。<code>&lt;resources&gt;</code>、閉じる記号、下にある <code>Theme.A01FirstApp</code> の行は残します。</p>
+<details><summary>変更後のファイル全体を確かめる</summary>
+<pre tabindex="0"><code>&lt;resources xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
+    &lt;!-- Base application theme. --&gt;
+    &lt;style name=&quot;Base.Theme.A01FirstApp&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;&gt;
         &lt;item name=&quot;android:forceDarkAllowed&quot;&gt;false&lt;/item&gt;
-        &lt;item name=&quot;android:fontFamily&quot;&gt;sans&lt;/item&gt;
-        &lt;item name=&quot;android:windowLightStatusBar&quot;&gt;true&lt;/item&gt;
-        &lt;item name=&quot;android:statusBarColor&quot;&gt;#FFFFFF&lt;/item&gt;
-        &lt;item name=&quot;android:navigationBarColor&quot;&gt;#000000&lt;/item&gt;
-        &lt;item name=&quot;android:windowLightNavigationBar&quot;&gt;false&lt;/item&gt;
-        &lt;item name=&quot;android:windowActionModeOverlay&quot;&gt;true&lt;/item&gt;
-        &lt;item name=&quot;android:windowBackground&quot;&gt;#FFFFFF&lt;/item&gt;
+        &lt;!-- Customize your light theme here. --&gt;
+        &lt;!-- &lt;item name=&quot;colorPrimary&quot;&gt;@color/my_light_primary&lt;/item&gt; --&gt;
+    &lt;/style&gt;
+
+    &lt;style name=&quot;Theme.A01FirstApp&quot; parent=&quot;Base.Theme.A01FirstApp&quot; /&gt;
+&lt;/resources&gt;
+</code></pre>
+<p><a href="assets/code/themes.xml.txt" download>変更後のコードを保存（テキスト）</a></p></details>
+<p>次に、<code>app/src/main/res/values-night/themes.xml</code> を開きます。</p>
+<ol class="steps"><li>こちらも <code>parent</code> の <code>DayNight</code> を <code>Light</code> に変えます。</li>
+<li>その下に <code>&lt;item name="android:forceDarkAllowed"&gt;false&lt;/item&gt;</code> を追加します。</li></ol>
+<p>nightの設定も変えることで、スマートフォンが暗い色の設定でもアプリを明るい色にそろえます。ファイルが見つからないときは、教員と確認します。</p>
+<details><summary>変更後のファイル全体を確かめる</summary>
+<pre tabindex="0"><code>&lt;resources xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
+    &lt;!-- Base application theme. --&gt;
+    &lt;style name=&quot;Base.Theme.A01FirstApp&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;&gt;
+        &lt;item name=&quot;android:forceDarkAllowed&quot;&gt;false&lt;/item&gt;
+        &lt;!-- Customize your dark theme here. --&gt;
+        &lt;!-- &lt;item name=&quot;colorPrimary&quot;&gt;@color/my_dark_primary&lt;/item&gt; --&gt;
     &lt;/style&gt;
 &lt;/resources&gt;
 </code></pre>
-<ol class="steps">
-<li><code>app/src/main/res/values-night</code> があるか確かめます。</li>
-<li>その中に <code>themes.xml</code> がある場合は、全体を④と同じコードに置き換えます。ない場合は、この操作は不要です。</li>
-</ol>
-<p>「night」の設定も同じにすることで、スマートフォンが暗い色の設定でも、今回の画面は白く表示します。</p>
-<h3>⑤ 教員と登録を確かめる</h3>
-<p><code>AndroidManifest.xml</code> を開きます。次の3つを探します。<strong>この表は貼り付けるコードではありません。</strong> 違う場合は教員と確認します。</p>
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th scope="col">場所</th>
-<th scope="col">確かめる内容</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>application</code> の中</td>
-<td><code>android:label="@string/app_name"</code></td>
-</tr>
-<tr>
-<td><code>application</code> の中</td>
-<td><code>android:theme="@style/Theme.A01FirstApp"</code></td>
-</tr>
-<tr>
-<td><code>activity</code> の中</td>
-<td><code>android:name=".MainActivity"</code></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="result"><strong>こうなればOK</strong>4種類のコードを貼り付けました。画面の言葉は、まだ Hello, Android! です。次の手順で動かします。
-</div>
-<details open>
-<summary>うまくいかないとき</summary>
-<p>貼り付け先を間違えたら、すぐに <strong>Edit → Undo</strong>（元に戻す）を選びます。4種類を貼り付けた後も赤い線が残る場合は、ファイル名と赤い線を教員に見せてください。先頭の <code>package</code> が違う場合も教員と確認します。</p>
+<p><a href="assets/code/themes-night.xml.txt" download>変更後のコードを保存（テキスト）</a></p></details>
+<h3>④ Javaのコードを確かめる</h3>
+<p><code>MainActivity.java</code> を開きます。このファイルは変更しません。</p>
+<ol class="steps"><li><code>setContentView(R.layout.activity_main);</code> を探します。②の画面を表示する指示です。</li>
+<li><code>findViewById(R.id.main)</code> を探します。②で残した <code>main</code> とつながっています。</li></ol>
+<details><summary>MainActivity.javaの初期コードを確かめる（変更しない）</summary>
+<pre tabindex="0"><code>package jp.ac.jec.a01firstapp;
+
+import android.os.Bundle;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class MainActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_main);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -&gt; {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+    }
+}
+</code></pre>
 </details>
-<nav class="step-nav" aria-label="手順06の前後"><a href="lesson.html#step-05">← 05 使うファイルを開いてみよう</a><a href="lesson.html#step-07">07 英語のあいさつを確かめよう →</a>
-</nav>
+<p>最初からある画面端の余白を整える処理は、そのまま使います。詳しい仕組みは、今は覚えなくて大丈夫です。</p>
+<div class="result"><strong>こうなればOK</strong>文字列・画面XML・テーマを変更しました。MainActivity.javaは最初のままです。次の手順で動かします。</div>
+<details open><summary>うまくいかないとき</summary><p>間違えたら <strong>Edit → Undo</strong>（元に戻す）で戻せます。赤い線が残る場合は、変更前後の例と記号を比べます。<code>R.id.main</code> に赤い線が出た場合は、画面XMLに <code>android:id="@+id/main"</code> があるか確かめます。</p></details>
+<nav class="step-nav" aria-label="手順06の前後"><a href="lesson.html#step-05">← 05 使うファイルを開いてみよう</a><a href="lesson.html#step-07">07 英語のあいさつを確かめよう →</a></nav>
 </section>
 <section class="card" id="step-07" aria-labelledby="heading-07">
 <div class="step-meta"><span>STEP 07</span><span>第2回 / 目安 20分</span>
@@ -411,7 +475,7 @@ public class MainActivity extends Activity {
 </div>
 <details open>
 <summary>うまくいかないとき</summary>
-<p>アプリがすぐ閉じる場合や、上にアプリのタイトルが出る場合は、<a href="#step-06">手順06の③と④</a>を教員と比べてください。画面の文字が端に寄る場合は、②のコードを比べます。</p>
+<p>アプリがすぐ閉じる場合や、上にアプリのタイトルが出る場合は、<a href="#step-06">手順06の③</a>を教員と比べてください。すぐ閉じる場合は②の <code>main</code>、文字が端に寄る場合は②の配置を確かめます。</p>
 </details>
 <nav class="step-nav" aria-label="手順07の前後"><a href="lesson.html#step-06">← 06 画面に文字を置こう</a><a href="lesson.html#step-08">08 表示する言葉を探そう →</a>
 </nav>

@@ -2,9 +2,7 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.Light.NoActionBar">
         <item name="android:forceDarkAllowed">false</item>
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <!-- Customize your dark theme here. -->
+        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
     </style>
-
-    <style name="Theme.A01FirstApp" parent="Base.Theme.A01FirstApp" />
 </resources>
