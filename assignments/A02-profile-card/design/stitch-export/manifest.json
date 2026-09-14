@@ -1,0 +1,57 @@
+{
+  "projectId": "3692358824817406400",
+  "acquiredAt": "2026-09-14T21:36:43.227301+09:00",
+  "method": "Stitch browser Export: copy code to clipboard",
+  "screens": [
+    {
+      "state": "S01",
+      "id": "33fd111ac6bd4584a8aeb84c32c8e577",
+      "name": "A02 自己紹介カード・画面完成",
+      "file": "S01/code.html",
+      "sha256": "52e7b24d4f8fcb71b9c24fd780e7794200af9ba5f194a9407b86f1d862ebb3a3"
+    },
+    {
+      "state": "S02",
+      "id": "5e8bd300f8bf423a891e951ce38057b4",
+      "name": "A02 自己紹介カード・あいさつ",
+      "file": "S02/code.html",
+      "sha256": "39475ff8a6f7107f19cf7e0846d01a37068e4f73683c81f21dc81f9b935f00b0"
+    },
+    {
+      "state": "S03",
+      "id": "52110bb5a28a465dbc24a8cbfdf29a29",
+      "name": "A02 自己紹介カード・入力初期",
+      "file": "S03/code.html",
+      "sha256": "b3e4a02235def8c2cb18cee286d16707e14463e5115c452e9818074f42ddfdc8"
+    },
+    {
+      "state": "S04",
+      "id": "1b6a14a0de484c39bf82e306937bbcc5",
+      "name": "A02 自己紹介カード・名前反映",
+      "file": "S04/code.html",
+      "sha256": "dbbe32fd9b471940f82889034dabe374a4611dc0a55afe6a3b2b0dfe7a57317d"
+    },
+    {
+      "state": "S05",
+      "id": "6109a29941b54ddeab19c53ea922a16d",
+      "name": "A02 自己紹介カード・名前であいさつ",
+      "file": "S05/code.html",
+      "sha256": "a20a310c4adaf04d5e1e85859280fa35b34577e607892647bc4fece595061c11"
+    },
+    {
+      "state": "S06",
+      "id": "0291f4bcae34445d9e662b9fce5dad5a",
+      "name": "A02 自己紹介カード・空欄エラー",
+      "file": "S06/code.html",
+      "sha256": "82b86e6730406d9da415b5df33e7e82dfcb91ccbcd06b8810eee5dbe4ab2912e"
+    }
+  ],
+  "avatar": {
+    "file": "profile-avatar.png",
+    "sourceScreen": "S04",
+    "method": "Generated image URL observed in exported HTML; HTTPS download",
+    "sha256": "ecf02fd92a630ff96a1b4838c55ab27e78c01f25745149f2a068e8612befb540",
+    "dimensions": "240 × 240",
+    "usage": "Stitchで本課題向けに生成された画像。学生の課題へ同梱。第三者ライセンスの独立した確認記録ではない。"
+  }
+}

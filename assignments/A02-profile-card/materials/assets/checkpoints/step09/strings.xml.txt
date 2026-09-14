@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">自己紹介カード</string>
+    <string name="card_title">自己紹介カード</string>
+    <string name="default_name">サクラ</string>
+    <string name="default_greeting">よろしくお願いします。</string>
+    <string name="profile_description">プロフィールのイラスト</string>
+    <string name="greet_button">あいさつする</string>
+</resources>

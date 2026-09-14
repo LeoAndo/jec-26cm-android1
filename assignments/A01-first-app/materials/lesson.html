@@ -229,10 +229,6 @@
 <td>画面に出す言葉や、アプリの名前。</td>
 </tr>
 <tr>
-<td><code>res/values/themes.xml</code></td>
-<td>画面全体の見た目。今回は共通の設定を写します。</td>
-</tr>
-<tr>
 <td><code>AndroidManifest.xml</code></td>
 <td>使う画面など、アプリの登録。</td>
 </tr>
@@ -259,7 +255,6 @@
 <div class="table-wrap"><table><thead><tr><th scope="col">ファイル</th><th scope="col">変えること</th></tr></thead><tbody>
 <tr><td>strings.xml</td><td>アプリの名前を変え、あいさつを1行追加する。</td></tr>
 <tr><td>activity_main.xml</td><td>部品の入れ物をLinearLayoutに変え、文字と余白を整える。</td></tr>
-<tr><td>values/themes.xml、values-night/themes.xml</td><td>明るい色の画面にそろえる。</td></tr>
 <tr><td>MainActivity.java、AndroidManifest.xml、Gradleの設定</td><td>変更しない。</td></tr>
 </tbody></table></div>
 <p>入力する記号は変更後の例と同じにします。コピーは <kbd>⌘</kbd> + <kbd>C</kbd>、貼り付けは <kbd>⌘</kbd> + <kbd>V</kbd> です。変更する文字だけを選んで貼り付けます。</p>
@@ -374,45 +369,7 @@
 &lt;/LinearLayout&gt;
 </code></pre>
 <p><a href="assets/code/activity_main.xml.txt" download>変更後のコードを保存（テキスト）</a></p></details>
-<h3>③ 明るい色の画面にそろえる</h3>
-<p><code>app/src/main/res/values/themes.xml</code> を開きます。</p>
-<ol class="steps"><li><code>parent</code> の <code>DayNight</code> を <code>Light</code> に変えます。</li>
-<li>その下に <code>android:forceDarkAllowed</code> の行を追加します。</li></ol>
-<p>変更前の行：</p>
-<pre tabindex="0"><code>&lt;style name=&quot;Base.Theme.A01FirstApp&quot; parent=&quot;Theme.Material3.DayNight.NoActionBar&quot;&gt;</code></pre>
-<p>変更後の2行：</p>
-<pre tabindex="0"><code>&lt;style name=&quot;Base.Theme.A01FirstApp&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;&gt;
-    &lt;item name=&quot;android:forceDarkAllowed&quot;&gt;false&lt;/item&gt;</code></pre>
-<p>この例はファイルの一部分です。<code>&lt;resources&gt;</code>、閉じる記号、下にある <code>Theme.A01FirstApp</code> の行は残します。</p>
-<details><summary>変更後のファイル全体を確かめる</summary>
-<pre tabindex="0"><code>&lt;resources xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
-    &lt;!-- Base application theme. --&gt;
-    &lt;style name=&quot;Base.Theme.A01FirstApp&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;&gt;
-        &lt;item name=&quot;android:forceDarkAllowed&quot;&gt;false&lt;/item&gt;
-        &lt;!-- Customize your light theme here. --&gt;
-        &lt;!-- &lt;item name=&quot;colorPrimary&quot;&gt;@color/my_light_primary&lt;/item&gt; --&gt;
-    &lt;/style&gt;
-
-    &lt;style name=&quot;Theme.A01FirstApp&quot; parent=&quot;Base.Theme.A01FirstApp&quot; /&gt;
-&lt;/resources&gt;
-</code></pre>
-<p><a href="assets/code/themes.xml.txt" download>変更後のコードを保存（テキスト）</a></p></details>
-<p>次に、<code>app/src/main/res/values-night/themes.xml</code> を開きます。</p>
-<ol class="steps"><li>こちらも <code>parent</code> の <code>DayNight</code> を <code>Light</code> に変えます。</li>
-<li>その下に <code>&lt;item name="android:forceDarkAllowed"&gt;false&lt;/item&gt;</code> を追加します。</li></ol>
-<p>nightの設定も変えることで、スマートフォンが暗い色の設定でもアプリを明るい色にそろえます。ファイルが見つからないときは、教員と確認します。</p>
-<details><summary>変更後のファイル全体を確かめる</summary>
-<pre tabindex="0"><code>&lt;resources xmlns:tools=&quot;http://schemas.android.com/tools&quot;&gt;
-    &lt;!-- Base application theme. --&gt;
-    &lt;style name=&quot;Base.Theme.A01FirstApp&quot; parent=&quot;Theme.Material3.Light.NoActionBar&quot;&gt;
-        &lt;item name=&quot;android:forceDarkAllowed&quot;&gt;false&lt;/item&gt;
-        &lt;!-- Customize your dark theme here. --&gt;
-        &lt;!-- &lt;item name=&quot;colorPrimary&quot;&gt;@color/my_dark_primary&lt;/item&gt; --&gt;
-    &lt;/style&gt;
-&lt;/resources&gt;
-</code></pre>
-<p><a href="assets/code/themes-night.xml.txt" download>変更後のコードを保存（テキスト）</a></p></details>
-<h3>④ Javaのコードを確かめる</h3>
+<h3>③ Javaのコードを確かめる</h3>
 <p><code>MainActivity.java</code> を開きます。このファイルは変更しません。</p>
 <ol class="steps"><li><code>setContentView(R.layout.activity_main);</code> を探します。②の画面を表示する指示です。</li>
 <li><code>findViewById(R.id.main)</code> を探します。②で残した <code>main</code> とつながっています。</li></ol>
@@ -444,7 +401,7 @@ public class MainActivity extends AppCompatActivity {
 </code></pre>
 </details>
 <p>最初からある画面端の余白を整える処理は、そのまま使います。詳しい仕組みは、今は覚えなくて大丈夫です。</p>
-<div class="result"><strong>こうなればOK</strong>文字列・画面XML・テーマを変更しました。MainActivity.javaは最初のままです。次の手順で動かします。</div>
+<div class="result"><strong>こうなればOK</strong>文字列と画面XMLを変更しました。MainActivity.javaは最初のままです。次の手順で動かします。</div>
 <details open><summary>うまくいかないとき</summary><p>間違えたら <strong>Edit → Undo</strong>（元に戻す）で戻せます。赤い線が残る場合は、変更前後の例と記号を比べます。<code>R.id.main</code> に赤い線が出た場合は、画面XMLに <code>android:id="@+id/main"</code> があるか確かめます。</p></details>
 <nav class="step-nav" aria-label="手順06の前後"><a href="lesson.html#step-05">← 05 使うファイルを開いてみよう</a><a href="lesson.html#step-07">07 英語のあいさつを確かめよう →</a></nav>
 </section>
@@ -477,7 +434,7 @@ public class MainActivity extends AppCompatActivity {
 <summary>うまくいかないとき</summary>
 <ul>
 <li>アプリがすぐ閉じる場合は、<a href="#step-06">手順06の②</a>にある <code>android:id="@+id/main"</code> を教員と確かめます。</li>
-<li>上にアプリのタイトルが出る場合は、<a href="#step-06">手順06の③</a>のテーマ設定を教員と比べます。</li>
+<li>見本にないタイトルが画面の上に出る場合は、<a href="#step-03">手順03</a>で選んだテンプレートと、今開いているプロジェクトを教員と確かめます。</li>
 <li>文字が端に寄る場合は、<a href="#step-06">手順06の②</a>の配置を確かめます。</li>
 </ul>
 </details>

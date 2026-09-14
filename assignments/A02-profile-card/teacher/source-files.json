@@ -1,0 +1,116 @@
+{
+  ".gitignore": {
+    "sha256": "703238443066325af08e3868d1e4b571a633baf68fcc93e323f0066999a97e1b"
+  },
+  "app/.gitignore": {
+    "sha256": "5c3174b74edc6f2b9e0743594b8bd3c7f31e4f4405758cc9872b3fe1de1d28b4"
+  },
+  "app/build.gradle.kts": {
+    "sha256": "6d90f8e2f59fc5562536b776f4fe4b7958a7535ca47d0baf532c81769a664476"
+  },
+  "app/proguard-rules.pro": {
+    "sha256": "56fd960cf225f6ca40f982b13a5dbb0d8bc3dfde13ff76422825c6070d0a1890"
+  },
+  "app/src/androidTest/java/jp/ac/jec/cm0199/myapplication/ExampleInstrumentedTest.java": {
+    "sha256": "c069da8ff4ca139b6db36e6ee891f7ee7fc50092dc87ee8fc3c1885d6efc9a87"
+  },
+  "app/src/main/AndroidManifest.xml": {
+    "sha256": "75758e6f2b497f4abd8fc601d3dcdbf310cdefebf191b37c74ea3d128ed21adb"
+  },
+  "app/src/main/java/jp/ac/jec/cm0199/myapplication/MainActivity.java": {
+    "sha256": "5e07e4f4ad01567206dc5de529a99e2a7da8b0e9515898b89b00b1e4f8e1ac20"
+  },
+  "app/src/main/res/drawable/ic_launcher_background.xml": {
+    "sha256": "ed423c73a6f40a4d2909f0901e60527b3a807cd59e1b5593bcaae1808b1c6321"
+  },
+  "app/src/main/res/drawable/ic_launcher_foreground.xml": {
+    "sha256": "01d1a6a6c1234eb7fe270d097eb283d72b9c95ae5118886f1b6573aad280f1f7"
+  },
+  "app/src/main/res/layout/activity_main.xml": {
+    "sha256": "4edb8f1a46136317c0f7745ebe5157e785132339b16e228c2b4340da66a1d9be"
+  },
+  "app/src/main/res/mipmap-anydpi/ic_launcher.xml": {
+    "sha256": "88f7653499ef524126ea5018a99baf9cc3269e7e584d6205dfdd76db39f39cc0"
+  },
+  "app/src/main/res/mipmap-anydpi/ic_launcher_round.xml": {
+    "sha256": "88f7653499ef524126ea5018a99baf9cc3269e7e584d6205dfdd76db39f39cc0"
+  },
+  "app/src/main/res/mipmap-hdpi/ic_launcher.webp": {
+    "sha256": "dd00996198640ed28fbc09cdcd7a3807cf8707f3eb255b659634da3ca6a6ff01"
+  },
+  "app/src/main/res/mipmap-hdpi/ic_launcher_round.webp": {
+    "sha256": "1ed73f5341a69d3b41c7e02e126803f50cc8c3284adf4bbb737f0c93577aef07"
+  },
+  "app/src/main/res/mipmap-mdpi/ic_launcher.webp": {
+    "sha256": "846219e6f72fe9a6c104ca8919cbee36a101e7d2ff8da9da67b689a5888f060d"
+  },
+  "app/src/main/res/mipmap-mdpi/ic_launcher_round.webp": {
+    "sha256": "4e2c58b91de01130e6479e00cbbaaf6e77cd961dd2c8e303cf13cd077fa92632"
+  },
+  "app/src/main/res/mipmap-xhdpi/ic_launcher.webp": {
+    "sha256": "398340dad816fc9a6338cb151a8cf1e45b926f9bfb70628b24c4bd2523cc94d4"
+  },
+  "app/src/main/res/mipmap-xhdpi/ic_launcher_round.webp": {
+    "sha256": "91b490aef86574901137f0a252272e1f1add99c1ad709e0696ed68929b88d261"
+  },
+  "app/src/main/res/mipmap-xxhdpi/ic_launcher.webp": {
+    "sha256": "58ae87fa0c5b5d1562d27fd648d2c061553fe20e3ed570bde588162d01ea7a27"
+  },
+  "app/src/main/res/mipmap-xxhdpi/ic_launcher_round.webp": {
+    "sha256": "3009fad079f5772f30ecd767f98924367fbe0f81c30048d672d4fda2d5ca7d12"
+  },
+  "app/src/main/res/mipmap-xxxhdpi/ic_launcher.webp": {
+    "sha256": "f98fef5bc3bfe5b65692c40ad1cbae2bec4faf9f1b249c397626740db71b62d8"
+  },
+  "app/src/main/res/mipmap-xxxhdpi/ic_launcher_round.webp": {
+    "sha256": "5faf033745c8c882c43bb1b372d4e4a5890caec63d9892a2e756c954108b85dc"
+  },
+  "app/src/main/res/values/colors.xml": {
+    "sha256": "efb70d7499549a57cea32b00e790ef0632cb0c95cdaeefd16903c8cd12c889e4"
+  },
+  "app/src/main/res/values/strings.xml": {
+    "sha256": "22e88cca26de9e26e33916dce55a324dca54a842b197f191b3406f7e11a1ab90"
+  },
+  "app/src/main/res/values/themes.xml": {
+    "sha256": "cc09b0c73ddd9f4227b0ad3386b91a5de0ab34015e3d2a541536f43b1512f3bc"
+  },
+  "app/src/main/res/values-night/themes.xml": {
+    "sha256": "8874587db4914392bacd008e4c497301faa3f1453dd1c817a1246a89085fa759"
+  },
+  "app/src/main/res/xml/backup_rules.xml": {
+    "sha256": "6cf1a27e6807b1d24e41d3fbe7ddc1bfe1f42226027964f6eaf477d71b43b283"
+  },
+  "app/src/main/res/xml/data_extraction_rules.xml": {
+    "sha256": "cb1fc47ab4a984530ed60e0e6ee638929c3038290e7e7e0b4b03a3a30fbe7381"
+  },
+  "app/src/test/java/jp/ac/jec/cm0199/myapplication/ExampleUnitTest.java": {
+    "sha256": "e1c97c97b842bdc28e58a1fc8eff57966be3190ec86729747862d0124b3fe7b6"
+  },
+  "build.gradle.kts": {
+    "sha256": "5dad2d59c54beb7d7801e06e1c795456d1bea58c0ccbeddfce159cd8f58c2fa8"
+  },
+  "gradle/gradle-daemon-jvm.properties": {
+    "sha256": "231649d2f8e8dc24310f18c921e3ae33fd2715b7f48a7ddcaf27a85003e0729a"
+  },
+  "gradle/libs.versions.toml": {
+    "sha256": "a72455ede4940d14561c916131e050df6eb6684f49e9a370fac58343445478b1"
+  },
+  "gradle/wrapper/gradle-wrapper.jar": {
+    "sha256": "76805e32c009c0cf0dd5d206bddc9fb22ea42e84db904b764f3047de095493f3"
+  },
+  "gradle/wrapper/gradle-wrapper.properties": {
+    "sha256": "ebb4a9f0e61ce78146197164ac984013b8e664222a958fca9a584fdb6ee06a32"
+  },
+  "gradle.properties": {
+    "sha256": "e1f585fdeb0b7c7c1d22166c8712b02b950eb8ba99bd93488a5bec9561a8eebe"
+  },
+  "gradlew": {
+    "sha256": "3238afb2aed5cb16eb7d6718077e7138059108f007b54179e9cc157c5a6e0e89"
+  },
+  "gradlew.bat": {
+    "sha256": "1d297e00bd21de3ace22b4d7f2de1f9dfa858883d66bbf7c1ccbecccec8f4f3b"
+  },
+  "settings.gradle.kts": {
+    "sha256": "90daff74eda09c73f2c54a912d61dc266858a39f33daf469675de1c8cd09aca7"
+  }
+}

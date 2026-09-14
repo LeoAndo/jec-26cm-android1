@@ -1,0 +1,18 @@
+{
+  "device": "Pocket_Install_Default_16_20260914 (Pixel 4 profile), emulator-5556",
+  "api": 36,
+  "size": "1080x2280",
+  "density": 440,
+  "method": "CaptureStatesTest + android screen capture (week2/week3)",
+  "images": {
+    "applied.png": "30ad626669525e11e1f225c7c94e58d265ccf41ba3d9501e84ed9bf81009025f",
+    "error.png": "5e0daee1f072bb1a7b5a82e38704652fdd9b44ca091a03082bfc0ba6a36f7c67",
+    "greeting.png": "edd55a1bec39eb611a107ade98f9b3a04709d07f63d472c706394cc6aae4213a",
+    "initial.png": "ba1d027c070c186a0f5f5b0d75b4aa67562f3603bca1e21c0bf4251be844dea6",
+    "keyboard.png": "5d406d7d242e8483c81858a7e9d7a2be3925e2e4fc69e5719564c789dff60471",
+    "long-name.png": "d46570b4089ccb32bb417c0f3c681ea6e127226928a7fdf7e56dcce44f7e799b",
+    "week2.png": "8f7bee15b5e6db5bfd41c3289e80dd08cf49fdc831026efd6f0ef9bdf71cf8af",
+    "week3.png": "e32c344d97f672fd7d709caa3e0c392481aa6b1e6762acb9f79592c9f9bd0238"
+  },
+  "theme": "生成原本のDayNight設定を維持した最終版"
+}

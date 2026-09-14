@@ -41,15 +41,3 @@
 -    <string name="app_name">A01FirstApp</string>
 +    <string name="app_name">はじめてのアプリ</string>
 +    <string name="greeting_message">Hello, Android!</string>
---- a/themes-night.xml
-+++ b/themes-night.xml
-@@ -3 +3,2 @@
--    <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.DayNight.NoActionBar">
-+    <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.Light.NoActionBar">
-+        <item name="android:forceDarkAllowed">false</item>
---- a/themes.xml
-+++ b/themes.xml
-@@ -3 +3,2 @@
--    <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.DayNight.NoActionBar">
-+    <style name="Base.Theme.A01FirstApp" parent="Theme.Material3.Light.NoActionBar">
-+        <item name="android:forceDarkAllowed">false</item>

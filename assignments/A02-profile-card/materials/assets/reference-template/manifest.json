@@ -1,0 +1,62 @@
+{
+  "source_root": "/Users/ando/Documents/Kotlin/MyApplication",
+  "captured_date": "2026-09-14",
+  "kind": "existing-project-reference-not-a02-starter",
+  "files": [
+    {
+      "source": "app/src/main/java/jp/ac/jec/cm0199/myapplication/MainActivity.java",
+      "snapshot": "app/src/main/java/jp/ac/jec/cm0199/myapplication/MainActivity.java.txt",
+      "sha256": "5e07e4f4ad01567206dc5de529a99e2a7da8b0e9515898b89b00b1e4f8e1ac20"
+    },
+    {
+      "source": "app/src/main/res/layout/activity_main.xml",
+      "snapshot": "app/src/main/res/layout/activity_main.xml.txt",
+      "sha256": "4edb8f1a46136317c0f7745ebe5157e785132339b16e228c2b4340da66a1d9be"
+    },
+    {
+      "source": "app/src/main/res/values/strings.xml",
+      "snapshot": "app/src/main/res/values/strings.xml.txt",
+      "sha256": "22e88cca26de9e26e33916dce55a324dca54a842b197f191b3406f7e11a1ab90"
+    },
+    {
+      "source": "app/src/main/res/values/themes.xml",
+      "snapshot": "app/src/main/res/values/themes.xml.txt",
+      "sha256": "cc09b0c73ddd9f4227b0ad3386b91a5de0ab34015e3d2a541536f43b1512f3bc"
+    },
+    {
+      "source": "app/src/main/res/values-night/themes.xml",
+      "snapshot": "app/src/main/res/values-night/themes.xml.txt",
+      "sha256": "8874587db4914392bacd008e4c497301faa3f1453dd1c817a1246a89085fa759"
+    },
+    {
+      "source": "app/src/main/AndroidManifest.xml",
+      "snapshot": "app/src/main/AndroidManifest.xml.txt",
+      "sha256": "75758e6f2b497f4abd8fc601d3dcdbf310cdefebf191b37c74ea3d128ed21adb"
+    },
+    {
+      "source": "app/build.gradle.kts",
+      "snapshot": "app/build.gradle.kts.txt",
+      "sha256": "6d90f8e2f59fc5562536b776f4fe4b7958a7535ca47d0baf532c81769a664476"
+    },
+    {
+      "source": "build.gradle.kts",
+      "snapshot": "build.gradle.kts.txt",
+      "sha256": "5dad2d59c54beb7d7801e06e1c795456d1bea58c0ccbeddfce159cd8f58c2fa8"
+    },
+    {
+      "source": "settings.gradle.kts",
+      "snapshot": "settings.gradle.kts.txt",
+      "sha256": "90daff74eda09c73f2c54a912d61dc266858a39f33daf469675de1c8cd09aca7"
+    },
+    {
+      "source": "gradle/libs.versions.toml",
+      "snapshot": "gradle/libs.versions.toml.txt",
+      "sha256": "a72455ede4940d14561c916131e050df6eb6684f49e9a370fac58343445478b1"
+    },
+    {
+      "source": "gradle/wrapper/gradle-wrapper.properties",
+      "snapshot": "gradle/wrapper/gradle-wrapper.properties.txt",
+      "sha256": "ebb4a9f0e61ce78146197164ac984013b8e664222a958fca9a584fdb6ee06a32"
+    }
+  ]
+}
